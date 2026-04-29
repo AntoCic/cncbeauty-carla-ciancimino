@@ -1,0 +1,60 @@
+.waFab {
+  position: fixed;
+  bottom: 26px;
+  right: 26px;
+  z-index: 800;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: #25D366;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 28px rgba(37, 211, 102, .38);
+  transition: transform .2s, box-shadow .2s;
+}
+.waFab:hover { transform: scale(1.1); }
+.waFab svg { width: 26px; height: 26px; }
+.waFab::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid rgba(37, 211, 102, .3);
+  animation: waPulse 2.8s ease-in-out infinite;
+}
+@keyframes waPulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50%       { transform: scale(1.3); opacity: 0; }
+}
+
+.topBtn {
+  position: fixed;
+  bottom: 96px;
+  right: 26px;
+  z-index: 800;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(255, 249, 245, .92);
+  backdrop-filter: blur(8px);
+  color: var(--plum);
+  font-size: 17px;
+  border: 1px solid var(--blush);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--sh);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity .3s, transform .3s;
+  pointer-events: none;
+  cursor: pointer;
+}
+.topBtnOn {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
+}
+.topBtn:hover { background: var(--blush); }

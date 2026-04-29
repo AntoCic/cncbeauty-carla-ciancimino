@@ -1,0 +1,58 @@
+:root {
+  --cream:     #FFF9F5;
+  --blush:     #F7D8DA;
+  --blush-d:   #EEBDC2;
+  --rose:      #C48B9F;
+  --rose-d:    #9E6478;
+  --gold:      #D4A574;
+  --gold-d:    #B8845A;
+  --plum:      #3D1F2D;
+  --plum-mid:  #6B3A52;
+  --plum-lt:   #A07080;
+  --white:     #FFFFFF;
+
+  --sh:        0 8px 40px rgba(61, 31, 45, .08);
+  --sh-md:     0 16px 60px rgba(61, 31, 45, .13);
+
+  --r:         20px;
+  --r-lg:      32px;
+
+  --fh:        'Playfair Display', Georgia, serif;
+  --fb:        'Manrope', system-ui, sans-serif;
+}
+
+/* ── Base ── */
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--fb);
+  background: var(--cream);
+  color: var(--plum);
+  overflow-x: hidden;
+}
+
+a { color: inherit; text-decoration: none; }
+button { cursor: pointer; font-family: var(--fb); border: none; background: none; }
+ul { list-style: none; }
+img { display: block; max-width: 100%; }
+
+/* ── Utility ── */
+.cnc-tag {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--rose);
+  margin-bottom: 10px;
+}
+
+.cnc-reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .65s ease, transform .65s ease;
+}
+.cnc-reveal.in {
+  opacity: 1;
+  transform: translateY(0);
+}

@@ -1,0 +1,95 @@
+.entries {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.entry {
+  position: relative;
+  height: clamp(380px, 52vw, 660px);
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.entryBg {
+  position: absolute;
+  inset: 0;
+  transition: transform .65s cubic-bezier(.25, .46, .45, .94);
+}
+.entry:hover .entryBg { transform: scale(1.05); }
+
+.ebgT { background: linear-gradient(145deg, #C9909E, #D4A0A8, #E8C0C8); }
+.ebgP { background: linear-gradient(145deg, #B8907A, #D4A574, #E8C8A0); }
+
+.entryBg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(45deg,
+    rgba(255, 255, 255, .04) 0, rgba(255, 255, 255, .04) 1px,
+    transparent 1px, transparent 18px);
+}
+
+.entryOv {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(25, 8, 16, .68) 0%, rgba(25, 8, 16, .08) 55%, transparent 100%);
+  transition: background .4s;
+}
+.entry:hover .entryOv {
+  background: linear-gradient(to top, rgba(25, 8, 16, .52) 0%, rgba(25, 8, 16, .04) 55%, transparent 100%);
+}
+
+.entryBody {
+  position: relative;
+  z-index: 2;
+  padding: clamp(24px, 3.5vw, 52px);
+  width: 100%;
+}
+
+.entryBody h2 {
+  font-family: var(--fh);
+  font-size: clamp(30px, 4vw, 60px);
+  font-weight: 400;
+  color: var(--white);
+  margin-bottom: 10px;
+  line-height: 1.1;
+}
+
+.entryBody p {
+  color: rgba(255, 255, 255, .72);
+  font-size: 14.5px;
+  font-weight: 300;
+  line-height: 1.65;
+  margin-bottom: 24px;
+  max-width: 340px;
+}
+
+.entryBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  border: 1.5px solid rgba(255, 255, 255, .45);
+  border-radius: 40px;
+  padding: 11px 22px;
+  color: var(--white);
+  font-size: 12.5px;
+  font-weight: 600;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  transition: background .3s, border-color .3s, gap .3s;
+}
+.entry:hover .entryBtn {
+  background: rgba(255, 255, 255, .12);
+  border-color: rgba(255, 255, 255, .75);
+  gap: 14px;
+}
+
+.arr { font-size: 16px; transition: transform .3s; }
+.entry:hover .arr { transform: translateX(3px); }
+
+@media (max-width: 600px) {
+  .entries { grid-template-columns: 1fr; }
+  .entry { height: clamp(300px, 80vw, 440px); }
+}

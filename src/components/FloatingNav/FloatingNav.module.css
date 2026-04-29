@@ -1,0 +1,192 @@
+/* ── Logo ── */
+.logo {
+  position: fixed;
+  top: clamp(16px, 2.5vw, 28px);
+  left: clamp(16px, 4vw, 56px);
+  z-index: 950;
+}
+.logo img {
+  height: 44px;
+  filter: drop-shadow(0 2px 12px rgba(61, 31, 45, .2));
+}
+
+/* ── Prenota pill ── */
+.prenotaPill {
+  position: fixed;
+  top: clamp(16px, 2.5vw, 28px);
+  right: calc(clamp(16px, 4vw, 56px) + 62px);
+  z-index: 950;
+  background: var(--rose);
+  color: var(--white);
+  padding: 10px 22px;
+  border-radius: 40px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  box-shadow: 0 4px 16px rgba(196, 139, 159, .32);
+  opacity: 0;
+  transform: translateY(-6px) scale(.95);
+  pointer-events: none;
+  transition: opacity .35s, transform .35s, background .2s;
+  cursor: pointer;
+}
+.prenotaPillOn {
+  opacity: 1;
+  transform: none;
+  pointer-events: all;
+}
+.prenotaPill:hover { background: var(--rose-d); }
+
+/* ── Hamburger button ── */
+.menuBtn {
+  position: fixed;
+  top: clamp(16px, 2.5vw, 28px);
+  right: clamp(16px, 4vw, 56px);
+  z-index: 1001;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: rgba(255, 249, 245, .88);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(196, 139, 159, .3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  box-shadow: 0 4px 20px rgba(61, 31, 45, .12);
+  transition: background .2s, transform .2s;
+  cursor: pointer;
+}
+.menuBtn:hover {
+  background: rgba(247, 216, 218, .9);
+  transform: scale(1.06);
+}
+.ml {
+  display: block;
+  width: 18px;
+  height: 1.5px;
+  background: var(--plum);
+  transition: transform .35s cubic-bezier(.4, 0, .2, 1), opacity .25s, width .3s;
+  transform-origin: center;
+}
+.menuBtnOpen .ml:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.menuBtnOpen .ml:nth-child(2) { opacity: 0; width: 0; }
+.menuBtnOpen .ml:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+/* ── Overlay ── */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  grid-template-columns: 1fr 460px;
+}
+
+/* ── Backdrop ── */
+.backdrop {
+  background: rgba(61, 31, 45, .4);
+  backdrop-filter: blur(3px);
+  cursor: pointer;
+}
+
+/* ── Panel ── */
+.panel {
+  background: var(--plum);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(28px, 5vw, 56px);
+}
+.npLogo img {
+  height: 52px;
+  margin-bottom: clamp(40px, 6vh, 68px);
+  filter: brightness(0) invert(1) opacity(.75);
+}
+.navLinks {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.navLink {
+  font-family: var(--fh);
+  font-size: clamp(26px, 3.5vw, 40px);
+  font-weight: 400;
+  color: rgba(255, 255, 255, .45);
+  line-height: 1.2;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, .07);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: color .25s, padding-left .25s;
+  text-align: left;
+  background: none;
+  cursor: pointer;
+  width: 100%;
+}
+.navLink:last-child { border-bottom: none; }
+.navLink:hover { color: var(--white); padding-left: 6px; }
+.nlArr {
+  font-size: 16px;
+  opacity: 0;
+  transition: opacity .2s, transform .2s;
+}
+.navLink:hover .nlArr { opacity: 1; transform: translateX(4px); }
+
+/* ── Nav footer ── */
+.navFooter {
+  margin-top: clamp(28px, 4vh, 48px);
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, .1);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.navCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+  background: var(--rose);
+  color: var(--white);
+  padding: 13px 26px;
+  border-radius: 40px;
+  font-size: 13.5px;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  transition: background .2s;
+  cursor: pointer;
+}
+.navCta:hover { background: var(--rose-d); }
+.navInfo {
+  font-size: 13px;
+  color: rgba(255, 255, 255, .4);
+  line-height: 1.8;
+  font-weight: 300;
+}
+.navInfo a { color: rgba(255, 255, 255, .55); transition: color .2s; }
+.navInfo a:hover { color: var(--white); }
+.navSocial { display: flex; gap: 10px; }
+.navSocial a {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .07);
+  color: rgba(255, 255, 255, .55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  transition: background .2s, color .2s;
+}
+.navSocial a:hover { background: var(--rose); color: var(--white); }
+
+@media (max-width: 640px) {
+  .overlay { grid-template-columns: 0 1fr; }
+  .backdrop { display: none; }
+}

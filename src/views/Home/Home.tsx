@@ -1,62 +1,44 @@
-import { useEffect, useState } from 'react';
-import { doc, getDoc } from 'firebase/firestore';
-import { db } from '../../components/firebase/firebase';
-import { APP_CONFIG_ID, APP_CONFIG_DEFAULTS } from '../../models/AppConfig';
-import type { AppConfigData } from '../../models/AppConfig';
-import { Btn } from '../../components/Btn/Btn';
-import styles from './Home.module.css';
+import { useState, useEffect } from 'react';
+import FloatingNav from '../../components/FloatingNav/FloatingNav';
+import SiteFooter from '../../components/SiteFooter/SiteFooter';
+import WaFab from '../../components/WaFab/WaFab';
+import MicroIntro from './cmp/MicroIntro';
+import HeroSection from './cmp/HeroSection';
+import EntryPoints from './cmp/EntryPoints';
+import WhyUs from './cmp/WhyUs';
+import TechCarousel from './cmp/TechCarousel';
+import AboutSection from './cmp/AboutSection';
+import Testimonials from './cmp/Testimonials';
+import ContactsSection from './cmp/ContactsSection';
+import FaqSection from './cmp/FaqSection';
 
 const Home = () => {
-  const [config, setConfig] = useState<AppConfigData>({ id: APP_CONFIG_ID, ...APP_CONFIG_DEFAULTS });
+  const [showIntro, setShowIntro] = useState(!sessionStorage.getItem('cnc_intro'));
 
   useEffect(() => {
-    getDoc(doc(db, 'appConfig', APP_CONFIG_ID)).then((snap) => {
-      if (snap.exists()) {
-        setConfig({ id: snap.id, ...snap.data() } as AppConfigData);
-      }
-    });
+    document.title = 'CNC Beauty – Centro Estetico a Sciacca, Agrigento';
   }, []);
 
   return (
-    <div className={styles.page}>
-      <header className={styles.hero}>
-        <h1 className={styles.brand}>{config.brandName}</h1>
-        <p className={styles.tagline}>Centro Estetico</p>
+    <>
+      {showIntro && <MicroIntro onDone={() => setShowIntro(false)} />}
 
-        <div className="d-flex gap-3 mt-4">
-          <Btn to="/trattamenti" color="dark">Trattamenti</Btn>
-          <Btn to="/prodotti" color="dark" version="outline">Prodotti</Btn>
-        </div>
-      </header>
+      <FloatingNav />
 
-      <section className={`container py-5 ${styles.infoSection}`}>
-        <div className="row justify-content-center g-4">
-          <div className="col-12 col-md-6 col-lg-4">
-            <div className={styles.infoCard}>
-              <span className="material-symbols-outlined">location_on</span>
-              <p>{config.officeAddress}</p>
-            </div>
-          </div>
-          <div className="col-12 col-md-6 col-lg-4">
-            <div className={styles.infoCard}>
-              <span className="material-symbols-outlined">phone</span>
-              <p>
-                <a href={`tel:${config.publicPhone}`}>{config.publicPhone}</a>
-              </p>
-            </div>
-          </div>
-          <div className="col-12 col-md-6 col-lg-4">
-            <div className={styles.infoCard}>
-              <span className="material-symbols-outlined">schedule</span>
-              <p>Lun–Ven: {config.dayStart} – {config.dayEnd}</p>
-              {config.breakStart && config.breakEnd && (
-                <p className={styles.breakNote}>Pausa: {config.breakStart} – {config.breakEnd}</p>
-              )}
-            </div>
-          </div>
-        </div>
-      </section>
-    </div>
+      <main>
+        <HeroSection />
+        <EntryPoints />
+        <WhyUs />
+        <TechCarousel />
+        <AboutSection />
+        <Testimonials />
+        <ContactsSection />
+        <FaqSection />
+      </main>
+
+      <SiteFooter />
+      <WaFab />
+    </>
   );
 };
 
