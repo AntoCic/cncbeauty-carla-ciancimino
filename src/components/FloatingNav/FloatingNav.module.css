@@ -4,16 +4,32 @@
   top: clamp(16px, 2.5vw, 28px);
   left: clamp(16px, 4vw, 56px);
   z-index: 950;
+  isolation: isolate;
+}
+.logo::before {
+  content: '';
+  position: absolute;
+  inset: -14px -22px -14px -22px;
+  background: radial-gradient(ellipse 100% 80% at 40% 50%,
+    rgba(255, 249, 245, .62) 0%,
+    rgba(255, 249, 245, .28) 55%,
+    transparent 80%);
+  filter: blur(10px);
+  border-radius: 50%;
+  z-index: -1;
+  pointer-events: none;
 }
 .logo img {
   height: 44px;
-  filter: drop-shadow(0 2px 12px rgba(61, 31, 45, .2));
+  filter: drop-shadow(0 2px 18px rgba(61, 31, 45, .35));
+  position: relative;
+  z-index: 1;
 }
 
 /* ── Prenota pill ── */
 .prenotaPill {
   position: fixed;
-  top: clamp(16px, 2.5vw, 28px);
+  top: calc(clamp(16px, 2.5vw, 28px) + 6px);
   right: calc(clamp(16px, 4vw, 56px) + 62px);
   z-index: 950;
   background: var(--rose);
@@ -26,7 +42,7 @@
   text-transform: uppercase;
   box-shadow: 0 4px 16px rgba(196, 139, 159, .32);
   opacity: 0;
-  transform: translateY(-6px) scale(.95);
+  transform: translateY(-8px) scale(.95);
   pointer-events: none;
   transition: opacity .35s, transform .35s, background .2s;
   cursor: pointer;

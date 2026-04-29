@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import FloatingNav from '../../components/FloatingNav/FloatingNav';
 import SiteFooter from '../../components/SiteFooter/SiteFooter';
 import WaFab from '../../components/WaFab/WaFab';
-import MicroIntro from './cmp/MicroIntro';
+import CherryBlossomIntro from './cmp/CherryBlossomIntro';
 import HeroSection from './cmp/HeroSection';
 import EntryPoints from './cmp/EntryPoints';
 import WhyUs from './cmp/WhyUs';
@@ -12,21 +12,29 @@ import Testimonials from './cmp/Testimonials';
 import ContactsSection from './cmp/ContactsSection';
 import FaqSection from './cmp/FaqSection';
 
+const alreadySeen = !!sessionStorage.getItem('cnc_intro');
+
 const Home = () => {
-  const [showIntro, setShowIntro] = useState(!sessionStorage.getItem('cnc_intro'));
+  const [showIntro, setShowIntro]       = useState(!alreadySeen);
+  const [heroReady, setHeroReady]       = useState(alreadySeen);
 
   useEffect(() => {
     document.title = 'CNC Beauty – Centro Estetico a Sciacca, Agrigento';
   }, []);
 
+  const handleIntroDone = () => {
+    setShowIntro(false);
+    setHeroReady(true);
+  };
+
   return (
     <>
-      {showIntro && <MicroIntro onDone={() => setShowIntro(false)} />}
+      {showIntro && <CherryBlossomIntro onDone={handleIntroDone} />}
 
       <FloatingNav />
 
       <main>
-        <HeroSection />
+        <HeroSection animate={heroReady} />
         <EntryPoints />
         <WhyUs />
         <TechCarousel />
