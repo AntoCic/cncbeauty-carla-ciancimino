@@ -1,0 +1,12 @@
+{
+  "projects": {
+    "default": "cncbeauty-ce"
+  },
+  "targets": {
+    "cncbeauty-ce": {
+      "hosting": {
+        "public": ["cncbeauty-carla-ciancimino"]
+      }
+    }
+  }
+}
