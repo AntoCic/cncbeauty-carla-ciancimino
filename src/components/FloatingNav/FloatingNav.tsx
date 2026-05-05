@@ -7,7 +7,6 @@ const NAV_LINKS = [
   { label: 'Trattamenti', to: '/trattamenti' },
   { label: 'Prodotti', to: '/prodotti' },
   { label: 'Tecnologie', to: '/#tech' },
-  { label: 'Chi siamo', to: '/chi-siamo' },
   { label: 'Contatti', to: '/#contacts' },
   { label: 'FAQ', to: '/#faq' },
 ];
@@ -47,6 +46,7 @@ const FloatingNav = () => {
         setTimeout(() => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' }), 400);
       }
     } else {
+      window.scrollTo(0, 0);
       navigate(to);
     }
   };
