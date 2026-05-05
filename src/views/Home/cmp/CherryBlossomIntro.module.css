@@ -2,15 +2,55 @@
   position: fixed;
   inset: 0;
   z-index: 9999;
+  background: #3D1F2D; /* --plum: massimo contrasto con i rami chiari */
+  overflow: hidden;
+}
+
+/* vignette radiale: bordi scuri, centro libero */
+.intro::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 70% 60% at 50% 50%,
+    transparent 30%,
+    rgba(26, 10, 20, 0.55) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+.plantContainer {
+  position: absolute;
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(165deg, #F8E0E6 0%, #F2CDD6 35%, #E8B8C4 65%, #DFA8B8 100%);
+  overflow: hidden;
+}
+
+.plant {
+  width: 130vmax;
+  height: auto;
+  flex-shrink: 0;
+  transform-origin: center center;
+  /* filtro: toglie il bianco puro → emerge la struttura della pianta */
+  filter: brightness(1.05) contrast(1.1) saturate(0.3);
+  mix-blend-mode: screen;
+}
+
+.logoWrap {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
 }
 
 .logo {
-  width: clamp(130px, 20vw, 195px);
-  filter: drop-shadow(0 4px 28px rgba(61, 31, 45, .22));
+  width: clamp(120px, 16vw, 168px);
+  filter: drop-shadow(0 3px 24px rgba(61, 31, 45, 0.7));
 }
 
 @media (prefers-reduced-motion: reduce) {
