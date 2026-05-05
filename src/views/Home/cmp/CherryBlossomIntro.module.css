@@ -2,22 +2,18 @@
   position: fixed;
   inset: 0;
   z-index: 9999;
-  background: #3D1F2D; /* --plum: massimo contrasto con i rami chiari */
+  background: linear-gradient(150deg, #DFAAB2 0%, #EAC4C8 40%, #D8A8B0 70%, #C89098 100%);
   overflow: hidden;
 }
 
-/* vignette radiale: bordi scuri, centro libero */
-.intro::after {
-  content: '';
+/* petali — stessa logica della hero, sopra la pianta ma sotto il logo */
+.petals {
   position: absolute;
   inset: 0;
-  background: radial-gradient(
-    ellipse 70% 60% at 50% 50%,
-    transparent 30%,
-    rgba(26, 10, 20, 0.55) 100%
-  );
-  pointer-events: none;
+  width: 100%;
+  height: 100%;
   z-index: 1;
+  pointer-events: none;
 }
 
 .plantContainer {
@@ -27,18 +23,18 @@
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  z-index: 0;
 }
 
+/* nessun filtro: colori naturali del SVG */
 .plant {
   width: 130vmax;
   height: auto;
   flex-shrink: 0;
   transform-origin: center center;
-  /* filtro: toglie il bianco puro → emerge la struttura della pianta */
-  filter: brightness(1.05) contrast(1.1) saturate(0.3);
-  mix-blend-mode: screen;
 }
 
+/* layer centering per la pill logo */
 .logoWrap {
   position: absolute;
   inset: 0;
@@ -46,11 +42,25 @@
   align-items: center;
   justify-content: center;
   z-index: 2;
+  pointer-events: none;
+}
+
+/* stessa pill della FloatingNav ma più grande per l'intro */
+.logoPill {
+  background: rgba(255, 249, 245, 0.82);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  padding: 14px 32px;
+  border-radius: 60px;
+  box-shadow:
+    0 6px 32px rgba(61, 31, 45, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
 }
 
 .logo {
-  width: clamp(120px, 16vw, 168px);
-  filter: drop-shadow(0 3px 24px rgba(61, 31, 45, 0.7));
+  height: 54px;
+  display: block;
 }
 
 @media (prefers-reduced-motion: reduce) {

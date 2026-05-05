@@ -12,11 +12,9 @@ import Testimonials from './cmp/Testimonials';
 import ContactsSection from './cmp/ContactsSection';
 import FaqSection from './cmp/FaqSection';
 
-const alreadySeen = !!sessionStorage.getItem('cnc_intro');
-
 const Home = () => {
-  const [showIntro, setShowIntro]       = useState(!alreadySeen);
-  const [heroReady, setHeroReady]       = useState(alreadySeen);
+  const [showIntro, setShowIntro] = useState(() => !sessionStorage.getItem('cnc_intro'));
+  const [heroReady, setHeroReady] = useState(() => !!sessionStorage.getItem('cnc_intro'));
 
   useEffect(() => {
     document.title = 'CNC Beauty – Centro Estetico a Sciacca, Agrigento';

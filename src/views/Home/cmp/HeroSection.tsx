@@ -12,11 +12,13 @@ interface Petal {
 interface Props { animate?: boolean; }
 
 const HeroSection = ({ animate = true }: Props) => {
-  const canvasRef   = useRef<HTMLCanvasElement>(null);
-  const rafRef      = useRef<number | null>(null);
-  const contentRef  = useRef<HTMLDivElement>(null);
-  const scrollRef   = useRef<HTMLDivElement>(null);
-  const animatedRef = useRef(false);
+  const canvasRef        = useRef<HTMLCanvasElement>(null);
+  const rafRef           = useRef<number | null>(null);
+  const contentRef       = useRef<HTMLDivElement>(null);
+  const scrollRef        = useRef<HTMLDivElement>(null);
+  const animatedRef      = useRef(false);
+  // true quando animate era già true al primo mount (refresh pagina → skip animazione)
+  const skipAnimRef      = useRef(animate);
 
   /* ── canvas petals ─────────────────────────────────────── */
   useEffect(() => {
@@ -99,6 +101,9 @@ const HeroSection = ({ animate = true }: Props) => {
     if (!contentRef.current || !scrollRef.current) return;
     animatedRef.current = true;
 
+    // Su refresh animate era già true al mount: mostra il contenuto senza animazione
+    if (skipAnimRef.current) return;
+
     const el   = contentRef.current;
     const h1   = el.querySelector('h1');
     const p    = el.querySelector('p');
@@ -113,7 +118,11 @@ const HeroSection = ({ animate = true }: Props) => {
       .fromTo(Array.from(btns), { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.65, stagger: 0.1 }, '-=0.48')
       .fromTo(hint, { opacity: 0 },         { opacity: 1, duration: 0.55 }, '-=0.2');
 
-    return () => { gsap.killTweensOf([h1, p, ...Array.from(btns), hint]); };
+    return () => {
+      // Reset per StrictMode: il secondo passaggio può ripartire dall'inizio
+      animatedRef.current = false;
+      gsap.killTweensOf([h1, p, ...Array.from(btns), hint]);
+    };
   }, [animate]);
 
   return (
