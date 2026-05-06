@@ -1,22 +1,23 @@
 {
-  "name": "HubCic",
-  "short_name": "HubCic",
-  "description": "HubCic - App",
+  "name": "CNC Beauty – Centro Estetico Sciacca",
+  "short_name": "CNC Beauty",
+  "description": "Centro estetico a Sciacca (AG) di Carla Ciancimino. Trattamenti viso, corpo, epilazione laser, massaggi, manicure e pedicure.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "theme_color": "#ffffff",
+  "theme_color": "#c8a882",
   "background_color": "#ffffff",
   "orientation": "portrait-primary",
+  "lang": "it",
   "icons": [
     {
-      "src": "/img/logo.png",
+      "src": "/img/logo/logo.png",
       "sizes": "any",
       "type": "image/png",
       "purpose": "any"
     },
     {
-      "src": "/img/logo.png",
+      "src": "/img/logo/pwa.png",
       "sizes": "any",
       "type": "image/png",
       "purpose": "maskable"

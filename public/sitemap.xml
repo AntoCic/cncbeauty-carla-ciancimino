@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://cncbeauty.it/</loc>
+    <lastmod>2026-05-06</lastmod>
+    <priority>1.0</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://cncbeauty.it/trattamenti</loc>
+    <lastmod>2026-05-06</lastmod>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://cncbeauty.it/prodotti</loc>
+    <lastmod>2026-05-06</lastmod>
+    <priority>0.8</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://cncbeauty.it/privacy</loc>
+    <lastmod>2026-05-06</lastmod>
+    <priority>0.2</priority>
+    <changefreq>yearly</changefreq>
+  </url>
+  <url>
+    <loc>https://cncbeauty.it/cookie</loc>
+    <lastmod>2026-05-06</lastmod>
+    <priority>0.2</priority>
+    <changefreq>yearly</changefreq>
+  </url>
+</urlset>
