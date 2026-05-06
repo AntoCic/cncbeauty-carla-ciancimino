@@ -3,15 +3,24 @@ import { db } from '../../components/firebase/firebase';
 import type { TreatmentData } from '../../models/Treatment';
 
 export async function getTreatmentsByCategory(categoryId: string): Promise<TreatmentData[]> {
+  console.log(`[db] getTreatmentsByCategory: fetching categoryId=${categoryId}`);
   const q = query(collection(db, 'treatments'), where('categoryIds', 'array-contains', categoryId));
   const snap = await getDocs(q);
-  return snap.docs
+  const result = snap.docs
     .map(d => ({ id: d.id, ...d.data() } as TreatmentData))
     .filter(t => t.storeVisible !== false);
+  console.log(`[db] getTreatmentsByCategory: ${result.length} visible items`, result);
+  return result;
 }
 
 export async function getTreatmentById(id: string): Promise<TreatmentData | null> {
+  console.log(`[db] getTreatmentById: fetching id=${id}`);
   const snap = await getDoc(doc(db, 'treatments', id));
-  if (!snap.exists()) return null;
-  return { id: snap.id, ...snap.data() } as TreatmentData;
+  if (!snap.exists()) {
+    console.warn(`[db] getTreatmentById: not found id=${id}`);
+    return null;
+  }
+  const result = { id: snap.id, ...snap.data() } as TreatmentData;
+  console.log(`[db] getTreatmentById: got`, result);
+  return result;
 }

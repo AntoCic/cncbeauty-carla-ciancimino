@@ -3,15 +3,24 @@ import { db } from '../../components/firebase/firebase';
 import type { ProductData } from '../../models/Product';
 
 export async function getProductsByCategory(categoryId: string): Promise<ProductData[]> {
+  console.log(`[db] getProductsByCategory: fetching categoryId=${categoryId}`);
   const q = query(collection(db, 'products'), where('categoryIds', 'array-contains', categoryId));
   const snap = await getDocs(q);
-  return snap.docs
+  const result = snap.docs
     .map(d => ({ id: d.id, ...d.data() } as ProductData))
     .filter(p => p.storeVisible !== false);
+  console.log(`[db] getProductsByCategory: ${result.length} visible items`, result);
+  return result;
 }
 
 export async function getProductById(id: string): Promise<ProductData | null> {
+  console.log(`[db] getProductById: fetching id=${id}`);
   const snap = await getDoc(doc(db, 'products', id));
-  if (!snap.exists()) return null;
-  return { id: snap.id, ...snap.data() } as ProductData;
+  if (!snap.exists()) {
+    console.warn(`[db] getProductById: not found id=${id}`);
+    return null;
+  }
+  const result = { id: snap.id, ...snap.data() } as ProductData;
+  console.log(`[db] getProductById: got`, result);
+  return result;
 }

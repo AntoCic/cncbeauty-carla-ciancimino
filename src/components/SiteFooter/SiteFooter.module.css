@@ -63,21 +63,28 @@
   font-size: 11.5px;
 }
 
-.social { display: flex; gap: 12px; }
-.social a {
-  width: 34px;
-  height: 34px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, .06);
+.bottomLeft {
   display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: 14px;
-  transition: background .2s;
-  font-weight: 700;
-  color: rgba(255, 255, 255, .55);
+  gap: 16px;
+  flex-wrap: wrap;
+  color: rgba(255, 255, 255, .45);
 }
-.social a:hover { background: var(--rose); color: #fff; }
+
+.bottomRight {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.legalLink {
+  font-size: 11.5px;
+  color: rgba(255, 255, 255, .45);
+  text-decoration: none;
+  transition: color .2s;
+}
+.legalLink:hover { color: rgba(255, 255, 255, .85); }
 
 @media (max-width: 780px) { .grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 460px) { .grid { grid-template-columns: 1fr; } }

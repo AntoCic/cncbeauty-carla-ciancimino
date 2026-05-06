@@ -11,23 +11,15 @@
 .heroBg {
   position: absolute;
   inset: 0;
-  background: linear-gradient(150deg, #DFAAB2 0%, #EAC4C8 40%, #D8A8B0 70%, #C89098 100%);
-}
-.heroBg::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: repeating-linear-gradient(135deg,
-    rgba(255, 255, 255, .05) 0,
-    rgba(255, 255, 255, .05) 1px,
-    transparent 1px,
-    transparent 22px);
+  background:
+    url(/img/home/ingresso-archi.jpg) center/cover no-repeat,
+    linear-gradient(150deg, #DFAAB2 0%, #EAC4C8 40%, #D8A8B0 70%, #C89098 100%);
 }
 
 .heroOverlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, rgba(30, 10, 20, .04) 0%, rgba(30, 10, 20, .22) 100%);
+  background: linear-gradient(to bottom, rgba(30, 10, 20, .42) 0%, rgba(30, 10, 20, .65) 100%);
 }
 
 .petals {

@@ -3,11 +3,38 @@ import { motion, useInView } from 'framer-motion';
 import styles from './TechCarousel.module.css';
 
 const TECHS = [
-  { title: 'Radiofrequenza', use: 'Rassodamento cutaneo e riduzione della lassità tissutale.', benefit: 'Pelle più compatta e tonica già dalle prime sedute.', bg: 'linear-gradient(145deg,#D4A0B0,#C08898)', slug: 'radiofrequenza' },
-  { title: 'Luce Pulsata IPL', use: 'Epilazione definitiva e trattamento delle macchie cutanee.', benefit: 'Pelle liscia e uniforme con risultati duraturi.', bg: 'linear-gradient(145deg,#C8A0C0,#B08898)', slug: 'luce-pulsata' },
-  { title: 'Pressoterapia', use: 'Favorire il drenaggio linfatico e ridurre la ritenzione idrica.', benefit: 'Gambe leggere, riduzione della cellulite e benessere.', bg: 'linear-gradient(145deg,#B8A888,#D4C090)', slug: 'pressoterapia' },
-  { title: 'Crioterapia Viso', use: 'Ridurre pori dilatati, rossori e stimolare la rigenerazione.', benefit: 'Viso più fresco, tono uniforme e pori minimizzati.', bg: 'linear-gradient(145deg,#A0B0C8,#8898B0)', slug: 'crioterapia' },
-  { title: 'Microdermabrasione', use: 'Esfoliazione profonda per rinnovare lo strato superficiale della pelle.', benefit: 'Pelle levigata, luminosa e uniforme dopo ogni seduta.', bg: 'linear-gradient(145deg,#C0A8C8,#A890B0)', slug: 'microdermabrasione' },
+  {
+    title: 'Laser Epilazione Progressiva',
+    problem: 'Peli superflui, irritazione da rasatura e ricrescita rapida.',
+    result: 'Riduzione progressiva dei peli e pelle più uniforme nel tempo.',
+    approach: 'Percorso personalizzato con tecnologia laser e parametri calibrati.',
+    img: '/img/home/laser.webp',
+    slug: 'laser-epilazione',
+  },
+  {
+    title: 'Microneedling',
+    problem: 'Texture irregolare, segni post acne e perdita di luminosità.',
+    result: 'Pelle più compatta, levigata e visibilmente più luminosa.',
+    approach: 'Protocollo microneedling con supporto cosmetico mirato.',
+    img: '/img/home/microneedling.webp',
+    slug: 'microneedling',
+  },
+  {
+    title: 'Luce Pulsata IPL',
+    problem: 'Macchie cutanee, arrossamenti e peli superflui resistenti.',
+    result: 'Pelle più uniforme, macchie ridotte e epilazione duratura.',
+    approach: 'Trattamento con luce pulsata calibrata per tipo di pelle e obiettivo.',
+    img: '/img/home/laser.webp',
+    slug: 'luce-pulsata',
+  },
+  {
+    title: 'Tecnologie Viso e Corpo',
+    problem: 'Perdita di tono e necessità di trattamenti mirati per zone specifiche.',
+    result: 'Miglioramento graduale di tonicità e definizione corporea.',
+    approach: 'Combinazione di radiofrequenza, tecnologie estetiche avanzate e manualità in base agli obiettivi.',
+    img: '/img/home/macchinario-viso-corpo.webp',
+    slug: 'tecnologie-viso-corpo',
+  },
 ];
 
 const TechCarousel = () => {
@@ -43,12 +70,12 @@ const TechCarousel = () => {
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.65, delay: i * 0.08 }}
           >
-            <div className={styles.img} style={{ background: t.bg }} />
+            <div className={styles.img} style={{ backgroundImage: `url(${t.img})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
             <div className={styles.body}>
               <h3>{t.title}</h3>
-              <p className={styles.use}>A cosa serve: {t.use}</p>
-              <p className={styles.benefit}>Beneficio percepito: {t.benefit}</p>
-              <span className={styles.link}>Scopri la tecnologia →</span>
+              <p className={styles.problem}>{t.problem}</p>
+              <p className={styles.approach}>{t.approach}</p>
+              <p className={styles.result}>{t.result}</p>
             </div>
           </motion.article>
         ))}

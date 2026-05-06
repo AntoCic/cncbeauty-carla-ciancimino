@@ -81,9 +81,7 @@ const AboutSection = () => {
       <div className={styles.inner}>
         <div className={styles.imgCol} ref={imgColRef}>
           <div className={styles.blob} ref={blobRef} aria-hidden="true" />
-          <div className={styles.photo} ref={photoRef}>
-            <span>foto ritratto<br />Carla Ciancimino<br />estetista professionista</span>
-          </div>
+          <div className={styles.photo} ref={photoRef} />
         </div>
 
         <div className={styles.text} ref={textRef}>

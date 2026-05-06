@@ -2,42 +2,44 @@ import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
 import { getTreatmentCategories } from '../../db/treatmentCategory/treatmentCategoryRepo';
-import type { TreatmentCategoryData } from '../../models/TreatmentCategory';
 import FloatingNav from '../../components/FloatingNav/FloatingNav';
 import SiteFooter from '../../components/SiteFooter/SiteFooter';
 import WaFab from '../../components/WaFab/WaFab';
 import styles from './TreatmentCategories.module.css';
 
-const STATIC_CATS = [
-  { id: 'viso', title: 'Trattamenti Viso', subtitle: 'Pulizie, idratazione, peeling, anti-age e rinnovamento cellulare.', bg: 'linear-gradient(145deg,#D4A0B0,#C08898,#B07888)', num: '01' },
-  { id: 'corpo', title: 'Trattamenti Corpo', subtitle: 'Rassodamento, anticellulite, drenaggio e rimodellamento corporeo.', bg: 'linear-gradient(145deg,#C8A888,#B89878,#A88868)', num: '02' },
-  { id: 'epilazione', title: 'Epilazione', subtitle: 'Epilazione a cera, luce pulsata IPL e trattamenti definitivi certificati.', bg: 'linear-gradient(145deg,#B8A0C8,#A890B8,#9880A8)', num: '03' },
-  { id: 'massaggi', title: 'Massaggi & Benessere', subtitle: 'Massaggi rilassanti, drenanti e sportivi per il benessere di corpo e mente.', bg: 'linear-gradient(145deg,#A0B8C0,#90A8B0,#8098A8)', num: '04' },
-  { id: 'speciali', title: 'Trattamenti Speciali', subtitle: 'Percorsi sposa, pre-cerimonia, maternità e trattamenti dedicati all\'uomo.', bg: 'linear-gradient(145deg,#C8B090,#B8A080,#A89070)', num: '05' },
-  { id: 'consulenza', title: 'Consulenza', subtitle: 'Analisi della pelle e costruzione del percorso personalizzato con Carla.', bg: 'linear-gradient(145deg,#C490A0,#B48090,#A47080)', num: '06' },
+const BG_PALETTE = [
+  'linear-gradient(145deg,#D4A0B0,#C08898,#B07888)',
+  'linear-gradient(145deg,#C8A888,#B89878,#A88868)',
+  'linear-gradient(145deg,#B8A0C8,#A890B8,#9880A8)',
+  'linear-gradient(145deg,#A0B8C0,#90A8B0,#8098A8)',
+  'linear-gradient(145deg,#C8B090,#B8A080,#A89070)',
+  'linear-gradient(145deg,#C490A0,#B48090,#A47080)',
 ];
+
+type CatItem = { id: string; title: string; subtitle: string; imgUrl: string; emoji: string; bg: string; num: string };
 
 const WA_URL = 'https://wa.me/393297094859?text=Ciao%21+Vorrei+prenotare+una+consulenza+gratuita';
 
 const TreatmentCategories = () => {
-  const [firestoreCats, setFirestoreCats] = useState<TreatmentCategoryData[]>([]);
+  const [cats, setCats] = useState<CatItem[]>([]);
+  const [loading, setLoading] = useState(true);
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '0px 0px -60px 0px' });
 
   useEffect(() => {
     document.title = 'Trattamenti – CNC Beauty Sciacca (AG)';
-    getTreatmentCategories().then(setFirestoreCats);
-  }, []);
-
-  const cats = firestoreCats.length > 0
-    ? firestoreCats.map((c, i) => ({
+    getTreatmentCategories()
+      .then(data => setCats(data.map((c, i) => ({
         id: c.id,
         title: c.title,
         subtitle: c.subtitle ?? '',
-        bg: STATIC_CATS[i % STATIC_CATS.length].bg,
+        imgUrl: c.imgUrls?.[0] ?? '',
+        emoji: c.emoji ?? '',
+        bg: BG_PALETTE[i % BG_PALETTE.length],
         num: String(i + 1).padStart(2, '0'),
-      }))
-    : STATIC_CATS;
+      }))))
+      .finally(() => setLoading(false));
+  }, []);
 
   return (
     <>
@@ -68,27 +70,41 @@ const TreatmentCategories = () => {
           <p>Dal trattamento viso alla cura del corpo, dall'epilazione al massaggio: ogni percorso in CNC Beauty è costruito sulle tue esigenze reali.</p>
         </motion.div>
 
-        <div className={styles.grid}>
-          {cats.map((cat, i) => (
-            <motion.div
-              key={cat.id}
-              initial={{ opacity: 0, y: 24 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: i * 0.08 }}
-            >
-              <Link to={`/trattamenti/${cat.id}`} className={styles.card}>
-                <div className={styles.cardBg} style={{ background: cat.bg }} />
-                <div className={styles.cardOv} />
-                <div className={styles.cardNum}>{cat.num}</div>
-                <div className={styles.cardBody}>
-                  <h2>{cat.title}</h2>
-                  <p>{cat.subtitle}</p>
-                  <div className={styles.cardLink}>Vedi trattamenti →</div>
-                </div>
-              </Link>
-            </motion.div>
-          ))}
-        </div>
+        {loading ? (
+          <div className={styles.gridLoading}>
+            {Array.from({ length: 6 }).map((_, i) => (
+              <div key={i} className={styles.skeleton} />
+            ))}
+          </div>
+        ) : (
+          <div className={styles.grid}>
+            {cats.map((cat, i) => (
+              <motion.div
+                key={cat.id}
+                initial={{ opacity: 0, y: 24 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: i * 0.08 }}
+              >
+                <Link to={`/trattamenti/${cat.id}`} className={styles.card}>
+                  <div
+                    className={styles.cardBg}
+                    style={cat.imgUrl
+                      ? { backgroundImage: `url(${cat.imgUrl})`, backgroundSize: 'cover', backgroundPosition: 'center' }
+                      : { background: cat.bg }
+                    }
+                  />
+                  <div className={styles.cardOv} />
+                  <div className={styles.cardNum}>{cat.emoji && <span>{cat.emoji}</span>}{cat.num}</div>
+                  <div className={styles.cardBody}>
+                    <h2>{cat.title}</h2>
+                    <p>{cat.subtitle}</p>
+                    <div className={styles.cardLink}>Vedi trattamenti →</div>
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+        )}
 
         <motion.div
           className={styles.ctaBanner}

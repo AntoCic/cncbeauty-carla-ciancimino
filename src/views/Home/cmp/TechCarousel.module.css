@@ -23,6 +23,7 @@
   scroll-snap-type: x mandatory;
   padding: 8px clamp(16px, 5vw, 80px) 32px;
   scrollbar-width: none;
+  justify-content: safe center;
 }
 .scroll::-webkit-scrollbar { display: none; }
 
@@ -40,6 +41,8 @@
 .img {
   height: 200px;
   position: relative;
+  background-size: cover;
+  background-position: center;
 }
 .img::after {
   content: '';
@@ -57,8 +60,9 @@
   font-weight: 500;
   margin-bottom: 6px;
 }
-.use { font-size: 13px; font-weight: 600; color: var(--rose); margin-bottom: 6px; letter-spacing: .03em; }
-.benefit { font-size: 13.5px; color: var(--plum-lt); line-height: 1.6; font-weight: 300; margin-bottom: 16px; }
+.problem { font-size: 13px; font-weight: 600; color: var(--rose); margin-bottom: 6px; letter-spacing: .02em; }
+.approach { font-size: 13px; color: var(--plum-mid); line-height: 1.6; font-weight: 400; margin-bottom: 6px; }
+.result { font-size: 13.5px; color: var(--plum-lt); line-height: 1.6; font-weight: 300; margin-bottom: 16px; }
 .link { font-size: 12.5px; font-weight: 700; color: var(--plum-mid); letter-spacing: .06em; text-transform: uppercase; display: flex; align-items: center; gap: 5px; transition: color .2s; cursor: pointer; }
 .link:hover { color: var(--rose); }
 

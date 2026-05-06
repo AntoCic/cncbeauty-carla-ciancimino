@@ -92,6 +92,7 @@
   z-index: 1000;
   display: grid;
   grid-template-columns: 1fr 460px;
+  overflow: hidden;
 }
 
 /* ── Backdrop ── */
@@ -197,6 +198,7 @@
 .navSocial a:hover { background: var(--rose); color: var(--white); }
 
 @media (max-width: 640px) {
-  .overlay { grid-template-columns: 0 1fr; }
+  .overlay { grid-template-columns: 1fr; }
   .backdrop { display: none; }
+  .panel { grid-column: 1; }
 }

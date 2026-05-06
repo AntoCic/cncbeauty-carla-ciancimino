@@ -1,12 +1,24 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
+import { useAppSelector } from '../../../store';
 import styles from './ContactsSection.module.css';
 
-const WA_URL = 'https://wa.me/393297094859?text=Ciao%21%20Vorrei%20prenotare%20una%20consulenza';
+const DAYS_IT = ['Dom', 'Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab'];
+
+const formatWorkingDays = (days: number[]): string => {
+  if (!days?.length) return 'Lun – Ven';
+  if (days.length === 1) return DAYS_IT[days[0]];
+  const sorted = [...days].sort((a, b) => a - b);
+  return `${DAYS_IT[sorted[0]]} – ${DAYS_IT[sorted[sorted.length - 1]]}`;
+};
 
 const ContactsSection = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '0px 0px -60px 0px' });
+  const cfg = useAppSelector(s => s.appConfig.data);
+
+  const WA_URL = `https://wa.me/${cfg.publicPhone.replace(/\D/g, '')}?text=Ciao%21%20Vorrei%20prenotare%20una%20consulenza`;
+  const workDays = cfg.workingDays ?? [1, 2, 3, 4, 5];
 
   return (
     <section id="contacts" className={styles.section} aria-labelledby="cont-h" ref={ref}>
@@ -18,7 +30,7 @@ const ContactsSection = () => {
           transition={{ duration: 0.65 }}
         >
           <iframe
-            src="https://www.openstreetmap.org/export/embed.html?bbox=13.055,37.493,13.095,37.513&layer=mapnik&marker=37.503,13.075"
+            src="https://www.openstreetmap.org/export/embed.html?bbox=13.050,37.501,13.080,37.521&layer=mapnik&marker=37.51106,13.06517"
             title="CNC Beauty – Via Enrico de Nicola 16, Sciacca (AG)"
             loading="lazy"
             allowFullScreen
@@ -38,7 +50,7 @@ const ContactsSection = () => {
             <div className={styles.ico} aria-hidden="true">📍</div>
             <div className={styles.det}>
               <h4>Indirizzo</h4>
-              <p>Via Enrico de Nicola 16, 92019 Sciacca (AG)<br />Sicilia, Italia</p>
+              <p>{cfg.officeAddress}<br />Sicilia, Italia</p>
             </div>
           </div>
 
@@ -46,15 +58,7 @@ const ContactsSection = () => {
             <div className={styles.ico} aria-hidden="true">📞</div>
             <div className={styles.det}>
               <h4>Telefono</h4>
-              <a href="tel:+393297094859">+39 329 709 4859</a>
-            </div>
-          </div>
-
-          <div className={styles.row}>
-            <div className={styles.ico} aria-hidden="true">✉</div>
-            <div className={styles.det}>
-              <h4>Email</h4>
-              <a href="mailto:carla.ciancimino99@gmail.com">carla.ciancimino99@gmail.com</a>
+              <a href={`tel:${cfg.publicPhone}`}>{cfg.publicPhone}</a>
             </div>
           </div>
 
@@ -63,9 +67,8 @@ const ContactsSection = () => {
             <div className={styles.det}>
               <h4>Orari</h4>
               <div className={styles.orari}>
-                <span className={styles.day}>Lun – Ven</span><span>09:00 – 19:00</span>
-                <span className={styles.day}>Sabato</span><span>09:00 – 17:00</span>
-                <span className={styles.day}>Domenica</span><span>Chiuso</span>
+                <span className={styles.day}>{formatWorkingDays(workDays)}</span>
+                <span>{cfg.dayStart} – {cfg.dayEnd}</span>
               </div>
             </div>
           </div>
@@ -78,7 +81,19 @@ const ContactsSection = () => {
               </svg>
               Scrivici su WhatsApp
             </a>
-            <a href="tel:+393297094859" className={styles.btnCall} aria-label="Chiama ora">
+            <a
+              href="https://www.instagram.com/_cnc_beauty_"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.btnIg}
+              aria-label="Seguici su Instagram"
+            >
+              <svg viewBox="0 0 24 24" fill="currentColor" width="17" height="17" aria-hidden="true">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+              Scrivici su Instagram
+            </a>
+            <a href={`tel:${cfg.publicPhone}`} className={styles.btnCall} aria-label="Chiama ora">
               📞 Chiama ora
             </a>
           </div>

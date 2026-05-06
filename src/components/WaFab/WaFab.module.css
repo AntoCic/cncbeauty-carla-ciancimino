@@ -1,7 +1,7 @@
 .waFab {
   position: fixed;
-  bottom: 26px;
-  right: 26px;
+  bottom: calc(26px + env(safe-area-inset-bottom, 0px));
+  right: calc(26px + env(safe-area-inset-right, 0px));
   z-index: 800;
   width: 54px;
   height: 54px;
@@ -31,8 +31,8 @@
 
 .topBtn {
   position: fixed;
-  bottom: 96px;
-  right: 26px;
+  bottom: calc(96px + env(safe-area-inset-bottom, 0px));
+  right: calc(26px + env(safe-area-inset-right, 0px));
   z-index: 800;
   width: 42px;
   height: 42px;

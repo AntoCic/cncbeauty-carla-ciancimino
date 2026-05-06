@@ -11,12 +11,28 @@ import styles from './TreatmentList.module.css';
 
 const WA_URL = 'https://wa.me/393297094859?text=Ciao%21%20Vorrei%20prenotare%20una%20consulenza';
 
+const BG_FALLBACKS = [
+  'linear-gradient(145deg,#D4A0B0,#C08898)',
+  'linear-gradient(145deg,#C8A888,#B89878)',
+  'linear-gradient(145deg,#B8A0C8,#A890B8)',
+  'linear-gradient(145deg,#A0B8C0,#90A8B0)',
+  'linear-gradient(145deg,#C8B090,#B8A080)',
+  'linear-gradient(145deg,#C490A0,#B48090)',
+];
+
+const isBlackColor = (c?: string) =>
+  !c || c === 'rgb(0, 0, 0)' || c === '#000000' || c === '#000' || c === 'black' || c === 'transparent';
+
+const cardBg = (t: { color?: string; imgUrls?: string[] }, i: number) =>
+  t.imgUrls?.[0] ? undefined : (isBlackColor(t.color) ? BG_FALLBACKS[i % BG_FALLBACKS.length] : t.color);
+
 const fmt = (price: number) =>
   new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR' }).format(price);
 
 const TreatmentList = () => {
   const { categoryId } = useParams<{ categoryId: string }>();
   const [categoryTitle, setCategoryTitle] = useState('');
+  const [categoryImgUrl, setCategoryImgUrl] = useState('');
   const [treatments, setTreatments] = useState<TreatmentData[]>([]);
   const [loading, setLoading] = useState(true);
   const ref = useRef(null);
@@ -31,6 +47,7 @@ const TreatmentList = () => {
     ]).then(([cat, items]) => {
       if (cat) {
         setCategoryTitle(cat.title);
+        setCategoryImgUrl(cat.imgUrls?.[0] ?? '');
         document.title = `${cat.title} – CNC Beauty Sciacca (AG)`;
       }
       setTreatments(items);
@@ -69,8 +86,15 @@ const TreatmentList = () => {
           </div>
           <div className={styles.heroImgWrap} aria-hidden="true">
             <div className={styles.heroImgBlob} />
-            <div className={styles.heroImg}>
-              <span>foto trattamento<br />{categoryTitle}</span>
+            <div
+              className={styles.heroImg}
+              style={categoryImgUrl ? {
+                backgroundImage: `url(${categoryImgUrl})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+              } : {}}
+            >
+              {!categoryImgUrl && <span>foto trattamento<br />{categoryTitle}</span>}
             </div>
           </div>
         </div>
@@ -108,10 +132,17 @@ const TreatmentList = () => {
                   to={`/trattamenti/${categoryId}/${t.id}`}
                   className={styles.card}
                 >
-                  <div className={styles.cardImg} style={{ background: t.color || 'linear-gradient(145deg,#D4A0B0,#C08898)' }}>
+                  <div className={styles.cardImg} style={{ background: cardBg(t, i) }}>
                     {t.imgUrls?.[0]
                       ? <img src={t.imgUrls[0]} alt={t.title} />
-                      : null
+                      : (
+                        <div className={styles.cardImgFallback}>
+                          {t.icon
+                            ? <span className="material-symbols-outlined">{t.icon}</span>
+                            : <span className="material-symbols-outlined">spa</span>
+                          }
+                        </div>
+                      )
                     }
                   </div>
                   <div className={styles.cardContent}>

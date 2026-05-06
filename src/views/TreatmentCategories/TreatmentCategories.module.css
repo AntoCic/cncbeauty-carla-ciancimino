@@ -198,8 +198,26 @@
 }
 .btnWa:hover { background: #1EB858; transform: translateY(-1px); }
 
-@media (max-width: 860px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+/* ── Skeleton loading ── */
+.gridLoading {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+.skeleton {
+  height: 340px;
+  border-radius: 28px;
+  background: linear-gradient(90deg, #f0e4e8 25%, #faf0f2 50%, #f0e4e8 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+}
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@media (max-width: 860px) { .grid, .gridLoading { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 560px) {
-  .grid { grid-template-columns: 1fr; }
-  .card { height: 280px; }
+  .grid, .gridLoading { grid-template-columns: 1fr; }
+  .card, .skeleton { height: 280px; }
 }

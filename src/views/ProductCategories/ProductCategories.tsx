@@ -2,42 +2,44 @@ import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
 import { getProductCategories } from '../../db/productCategory/productCategoryRepo';
-import type { ProductCategoryData } from '../../models/ProductCategory';
 import FloatingNav from '../../components/FloatingNav/FloatingNav';
 import SiteFooter from '../../components/SiteFooter/SiteFooter';
 import WaFab from '../../components/WaFab/WaFab';
 import styles from './ProductCategories.module.css';
 
-const STATIC_CATS = [
-  { id: 'viso', title: 'Creme & Sieri Viso', subtitle: 'Idratanti, anti-age, lenitivi e rigeneranti. Formulazioni selezionate per ogni tipo di pelle.', bg: 'linear-gradient(145deg,#D4A0B0,#C08898)', count: '12 prodotti' },
-  { id: 'corpo', title: 'Trattamenti Corpo', subtitle: 'Creme rassodanti, oli da massaggio, scrub corporei e prodotti anticellulite professionali.', bg: 'linear-gradient(145deg,#C8A888,#B89878)', count: '9 prodotti' },
-  { id: 'sole', title: 'Sole & Autoabbronzanti', subtitle: 'Solari ad alta protezione, doposole rigeneranti e autoabbronzanti graduali per tutto l\'anno.', bg: 'linear-gradient(145deg,#D4B888,#C8A878)', count: '7 prodotti' },
-  { id: 'profumi', title: 'Profumi & Aromi', subtitle: 'Profumi, candele artigianali e diffusori per ambienti. Il benessere che entra in casa tua.', bg: 'linear-gradient(145deg,#B8A0C8,#A890B8)', count: '8 prodotti' },
-  { id: 'kit', title: 'Kit & Cofanetti', subtitle: 'Set regalo e routine complete, ideali per ogni occasione. Confezioni curate nei minimi dettagli.', bg: 'linear-gradient(145deg,#C0B098,#B0A088)', count: '5 cofanetti' },
-  { id: 'professionali', title: 'Linee Professionali', subtitle: 'I prodotti usati direttamente in cabina durante i trattamenti, ora disponibili anche per uso domiciliare.', bg: 'linear-gradient(145deg,#A8B8C8,#98A8B8)', count: '15 prodotti' },
+const BG_PALETTE = [
+  'linear-gradient(145deg,#D4A0B0,#C08898)',
+  'linear-gradient(145deg,#C8A888,#B89878)',
+  'linear-gradient(145deg,#D4B888,#C8A878)',
+  'linear-gradient(145deg,#B8A0C8,#A890B8)',
+  'linear-gradient(145deg,#C0B098,#B0A088)',
+  'linear-gradient(145deg,#A8B8C8,#98A8B8)',
+  'linear-gradient(145deg,#B8A0C8,#A890B8)',
 ];
+
+type CatItem = { id: string; title: string; subtitle: string; imgUrl: string; emoji: string; bg: string };
 
 const WA_URL = 'https://wa.me/393297094859?text=Ciao%21+Vorrei+una+consulenza+sui+prodotti';
 
 const ProductCategories = () => {
-  const [firestoreCats, setFirestoreCats] = useState<ProductCategoryData[]>([]);
+  const [cats, setCats] = useState<CatItem[]>([]);
+  const [loading, setLoading] = useState(true);
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '0px 0px -60px 0px' });
 
   useEffect(() => {
     document.title = 'Prodotti – CNC Beauty Sciacca (AG)';
-    getProductCategories().then(setFirestoreCats);
-  }, []);
-
-  const cats = firestoreCats.length > 0
-    ? firestoreCats.map((c, i) => ({
+    getProductCategories()
+      .then(data => setCats(data.map((c, i) => ({
         id: c.id,
         title: c.title,
         subtitle: c.subtitle ?? '',
-        bg: STATIC_CATS[i % STATIC_CATS.length].bg,
-        count: '',
-      }))
-    : STATIC_CATS;
+        imgUrl: c.imgUrls?.[0] ?? '',
+        emoji: c.emoji ?? '',
+        bg: BG_PALETTE[i % BG_PALETTE.length],
+      }))))
+      .finally(() => setLoading(false));
+  }, []);
 
   return (
     <>
@@ -68,44 +70,42 @@ const ProductCategories = () => {
           <p>Ogni prodotto disponibile nel centro è stato selezionato personalmente da Carla Ciancimino per efficacia, qualità degli ingredienti e compatibilità con i protocolli trattamento.</p>
         </motion.div>
 
-        {/* Featured banner */}
-        <motion.div
-          className={styles.featured}
-          initial={{ opacity: 0, y: 24 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.1 }}
-        >
-          <div className={styles.featuredOv} />
-          <div className={styles.featuredBody}>
-            <span className={styles.featuredTag}>Novità 2025</span>
-            <h2>Nuova linea anti-age<br />intensiva</h2>
-            <p>Sieri e creme a base di peptidi e retinolo microincapsulato per una rigenerazione visibile fin dalla prima settimana.</p>
-            <div className={styles.featuredCta}>Scopri la linea →</div>
-          </div>
-        </motion.div>
-
         {/* Product category grid */}
-        <div className={styles.grid}>
-          {cats.map((cat, i) => (
-            <motion.div
-              key={cat.id}
-              initial={{ opacity: 0, y: 24 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.15 + i * 0.08 }}
-            >
-              <Link to={`/prodotti/${cat.id}`} className={styles.card}>
-                <div className={styles.cardImg} style={{ background: cat.bg }}>
-                  {cat.count && <div className={styles.cardCount}>{cat.count}</div>}
-                </div>
-                <div className={styles.cardBody}>
-                  <h3>{cat.title}</h3>
-                  <p>{cat.subtitle}</p>
-                  <div className={styles.cardLink}>Scopri →</div>
-                </div>
-              </Link>
-            </motion.div>
-          ))}
-        </div>
+        {loading ? (
+          <div className={styles.gridLoading}>
+            {Array.from({ length: 6 }).map((_, i) => (
+              <div key={i} className={styles.skeleton} />
+            ))}
+          </div>
+        ) : (
+          <div className={styles.grid}>
+            {cats.map((cat, i) => (
+              <motion.div
+                key={cat.id}
+                initial={{ opacity: 0, y: 24 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: 0.15 + i * 0.08 }}
+              >
+                <Link to={`/prodotti/${cat.id}`} className={styles.card}>
+                  <div
+                    className={styles.cardImg}
+                    style={cat.imgUrl
+                      ? { backgroundImage: `url(${cat.imgUrl})`, backgroundSize: 'cover', backgroundPosition: 'center' }
+                      : { background: cat.bg }
+                    }
+                  >
+                    {cat.emoji && <div className={styles.cardEmoji}>{cat.emoji}</div>}
+                  </div>
+                  <div className={styles.cardBody}>
+                    <h3>{cat.title}</h3>
+                    <p>{cat.subtitle}</p>
+                    <div className={styles.cardLink}>Scopri →</div>
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+        )}
 
         {/* CTA Banner */}
         <motion.div

@@ -5,11 +5,14 @@ import ProductCategories from './views/ProductCategories/ProductCategories';
 import TreatmentList from './views/TreatmentList/TreatmentList';
 import ProductList from './views/ProductList/ProductList';
 import ItemDetail from './views/ItemDetail/ItemDetail';
+import LegalPage from './views/LegalPage/LegalPage';
+import CookieBanner from './components/CookieBanner/CookieBanner';
 
 const RootLayout = () => (
   <>
     <ScrollRestoration />
     <Outlet />
+    <CookieBanner />
   </>
 );
 
@@ -24,6 +27,9 @@ export const router = createBrowserRouter([
       { path: '/prodotti/:categoryId', element: <ProductList /> },
       { path: '/trattamenti/:categoryId/:id', element: <ItemDetail type="treatment" /> },
       { path: '/prodotti/:categoryId/:id', element: <ItemDetail type="product" /> },
+      { path: '/privacy', element: <LegalPage type="privacy" /> },
+      { path: '/cookie', element: <LegalPage type="cookie" /> },
+      { path: '/termini', element: <LegalPage type="terms" /> },
     ],
   },
 ]);

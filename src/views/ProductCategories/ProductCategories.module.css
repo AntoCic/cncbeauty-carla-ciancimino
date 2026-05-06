@@ -194,18 +194,13 @@
     transparent 1px, transparent 18px);
 }
 
-.cardCount {
+.cardEmoji {
   position: absolute;
   top: 14px;
   right: 14px;
-  background: rgba(255,255,255,.2);
-  backdrop-filter: blur(4px);
-  border-radius: 40px;
-  padding: 4px 12px;
-  font-size: 11px;
-  font-weight: 600;
-  color: rgba(255,255,255,.8);
-  letter-spacing: .04em;
+  font-size: 22px;
+  line-height: 1;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,.25));
   z-index: 1;
 }
 
@@ -285,8 +280,26 @@
 }
 .btnWa:hover { background: #1EB858; transform: translateY(-1px); }
 
-@media (max-width: 860px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+/* ── Skeleton loading ── */
+.gridLoading {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.skeleton {
+  height: 320px;
+  border-radius: 24px;
+  background: linear-gradient(90deg, #f5ede0 25%, #fdf5ec 50%, #f5ede0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite;
+}
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@media (max-width: 860px) { .grid, .gridLoading { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 520px) {
-  .grid { grid-template-columns: 1fr; }
+  .grid, .gridLoading { grid-template-columns: 1fr; }
   .featured { height: auto; }
 }

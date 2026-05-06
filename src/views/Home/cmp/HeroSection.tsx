@@ -132,7 +132,7 @@ const HeroSection = ({ animate = true }: Props) => {
       <canvas ref={canvasRef} className={styles.petals} aria-hidden="true" />
       <div ref={contentRef} className={styles.content}>
         <h1>Il tuo momento di bellezza a Sciacca,<br /><em>pensato su misura per te.</em></h1>
-        <p>Trattamenti professionali, prodotti selezionati e tecnologie certificate<br className="d-none d-md-inline" />nel cuore della Sicilia, ad Agrigento.</p>
+        <p>Tecnologie viso e corpo per risultati reali<br className="d-none d-md-inline" />con percorsi su misura.</p>
         <div className={styles.btns}>
           <Link to="/trattamenti" className={styles.btnW}>Scopri i trattamenti</Link>
           <Link to="/prodotti" className={styles.btnGhost}>Scopri i prodotti</Link>
