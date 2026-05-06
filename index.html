@@ -6,7 +6,7 @@
     <link rel="apple-touch-icon" href="/img/logo/pwa.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="index, follow" />
-    <meta name="description" content="CNC Beauty – Centro estetico a Sciacca (AG). Trattamenti viso, corpo, epilazione e benessere con Carla Ciancimino. Prenota la tua consulenza gratuita." />
+    <meta name="description" content="CNC Beauty – Centro estetico a Sciacca (AG). Trattamenti viso, corpo, epilazione laser, ceretta, massaggi, manicure e pedicure con Carla Ciancimino. Consulenza gratuita." />
     <title>CNC Beauty – Centro Estetico a Sciacca, Agrigento</title>
     <script type="application/ld+json">
     {
@@ -14,10 +14,10 @@
       "@graph": [
         {
           "@type": "BeautySalon",
-          "@id": "https://cncbeauty-carla-ciancimino.web.app/#business",
+          "@id": "https://cncbeauty.it/#business",
           "name": "CNC Beauty",
-          "description": "Centro estetico a Sciacca (AG) specializzato in trattamenti viso, corpo, epilazione e benessere. Prenota una consulenza gratuita con Carla Ciancimino.",
-          "url": "https://cncbeauty-carla-ciancimino.web.app",
+          "description": "Centro estetico a Sciacca (AG) specializzato in trattamenti viso, corpo, epilazione laser, ceretta, massaggi, manicure e pedicure. Percorsi di benessere personalizzati firmati da Carla Ciancimino.",
+          "url": "https://cncbeauty.it",
           "telephone": "+393297094859",
           "email": "carla.ciancimino99@gmail.com",
           "address": {
@@ -47,14 +47,124 @@
               "closes": "19:00"
             }
           ],
-          "sameAs": [
-            "https://www.instagram.com/_cnc_beauty_"
-          ],
-          "founder": {
-            "@type": "Person",
-            "name": "Carla Ciancimino"
-          },
-          "priceRange": "€€"
+          "sameAs": ["https://www.instagram.com/_cnc_beauty_"],
+          "founder": { "@type": "Person", "name": "Carla Ciancimino" },
+          "priceRange": "€€",
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Trattamenti CNC Beauty",
+            "itemListElement": [
+              {
+                "@type": "OfferCatalog",
+                "name": "Ceretta",
+                "itemListElement": [
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Ceretta ascelle donna" }, "price": "8.00", "priceCurrency": "EUR" },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Ceretta baffetto" }, "price": "3.00", "priceCurrency": "EUR" },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Ceretta braccia donna" }, "price": "10.00", "priceCurrency": "EUR" },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Ceretta braccia uomo" }, "price": "18.00", "priceCurrency": "EUR" },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Ceretta gamba completa donna" }, "price": "25.00", "priceCurrency": "EUR" },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Ceretta gamba completa uomo" }, "price": "30.00", "priceCurrency": "EUR" },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Ceretta inguine completo" }, "price": "10.00", "priceCurrency": "EUR" },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Ceretta inguine parziale donna" }, "price": "6.00", "priceCurrency": "EUR" },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Ceretta mezza gamba donna" }, "price": "15.00", "priceCurrency": "EUR" },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Ceretta mezza gamba uomo" }, "price": "20.00", "priceCurrency": "EUR" },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Ceretta petto uomo" }, "price": "25.00", "priceCurrency": "EUR" },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Ceretta schiena donna" }, "price": "15.00", "priceCurrency": "EUR" },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Ceretta schiena uomo" }, "price": "25.00", "priceCurrency": "EUR" },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Ceretta sopracciglia" }, "price": "3.00", "priceCurrency": "EUR" },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Ceretta viso" }, "price": "6.00", "priceCurrency": "EUR" }
+                ]
+              },
+              {
+                "@type": "OfferCatalog",
+                "name": "Laminazione ciglia e sopracciglia",
+                "itemListElement": [
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Laminazione ciglia", "description": "Curva, nutre e valorizza le ciglia naturali senza extension. Risultati duraturi fino a 5-6 settimane." }, "price": "40.00", "priceCurrency": "EUR" },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Laminazione ciglia e sopracciglia", "description": "Trattamento completo per valorizzare ciglia e sopracciglia con definizione e un effetto naturale a lunga durata." }, "price": "60.00", "priceCurrency": "EUR" },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Laminazione sopracciglia", "description": "Disciplina e definisce le sopracciglia naturali migliorandone forma e pienezza. Risultati naturali duraturi fino a 5-6 settimane." }, "price": "40.00", "priceCurrency": "EUR" }
+                ]
+              },
+              {
+                "@type": "OfferCatalog",
+                "name": "Epilazione laser",
+                "itemListElement": [
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Epilazione laser addome donna" }, "price": "25.00", "priceCurrency": "EUR" },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Epilazione laser ascelle donna" }, "price": "25.00", "priceCurrency": "EUR" },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Epilazione laser ascelle uomo" }, "price": "30.00", "priceCurrency": "EUR" },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Epilazione laser baffetto donna" }, "price": "15.00", "priceCurrency": "EUR" },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Epilazione laser barba uomo" }, "price": "40.00", "priceCurrency": "EUR" },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Epilazione laser basette donna" }, "price": "20.00", "priceCurrency": "EUR" },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Epilazione laser braccia donna" }, "price": "35.00", "priceCurrency": "EUR" },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Epilazione laser braccia uomo" }, "price": "40.00", "priceCurrency": "EUR" },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Epilazione laser collo uomo" }, "price": "25.00", "priceCurrency": "EUR" },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Epilazione laser gamba completa donna" }, "price": "60.00", "priceCurrency": "EUR" },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Epilazione laser gamba completa uomo" }, "price": "70.00", "priceCurrency": "EUR" },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Epilazione laser glutei" }, "price": "30.00", "priceCurrency": "EUR" },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Epilazione laser inguine donna" }, "price": "35.00", "priceCurrency": "EUR" },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Epilazione laser lombare donna" }, "price": "25.00", "priceCurrency": "EUR" },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Epilazione laser mento donna" }, "price": "15.00", "priceCurrency": "EUR" },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Epilazione laser mezza gamba" }, "price": "40.00", "priceCurrency": "EUR" },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Epilazione laser mezza gamba uomo" }, "price": "50.00", "priceCurrency": "EUR" },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Epilazione laser nuca uomo" }, "price": "20.00", "priceCurrency": "EUR" },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Epilazione laser schiena donna" }, "price": "35.00", "priceCurrency": "EUR" },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Epilazione laser schiena uomo" }, "price": "40.00", "priceCurrency": "EUR" },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Epilazione laser torace uomo" }, "price": "40.00", "priceCurrency": "EUR" },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Epilazione laser viso completo donna" }, "price": "40.00", "priceCurrency": "EUR" }
+                ]
+              },
+              {
+                "@type": "OfferCatalog",
+                "name": "Manicure e Pedicure",
+                "itemListElement": [
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Manicure classica", "description": "Trattamento completo: limatura, cura delle cuticole, idratazione e applicazione di smalto classico." }, "price": "8.00", "priceCurrency": "EUR" },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Manicure gel", "description": "Applicazione di gel sull'unghia naturale per migliorarne resistenza e durata." }, "price": "25.00", "priceCurrency": "EUR" },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Manicure ricostruzione unghie", "description": "Allungamento e ricostruzione dell'unghia naturale tramite gel con forma e lunghezza personalizzate." }, "price": "35.00", "priceCurrency": "EUR" },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Manicure semipermanente", "description": "Smalto semipermanente brillante e resistente fino a 2-3 settimane." }, "price": "15.00", "priceCurrency": "EUR" },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Nail art", "description": "Decorazioni personalizzate realizzate a mano per unghie originali ed eleganti." }, "price": "3.00", "priceCurrency": "EUR" },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Pedicure semipermanente", "description": "Pedicure con smalto semipermanente brillante e impeccabile per settimane." }, "price": "45.00", "priceCurrency": "EUR" },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Pedicure spa classica", "description": "Trattamento completo: cura delle unghie, cuticole, callosità, idratazione, scrub, vasca idromassaggio e smalto." }, "price": "30.00", "priceCurrency": "EUR" },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Rimozione gel" }, "price": "15.00", "priceCurrency": "EUR" },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Rimozione semipermanente" }, "price": "10.00", "priceCurrency": "EUR" },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Semipermanente piedi" }, "price": "15.00", "priceCurrency": "EUR" }
+                ]
+              },
+              {
+                "@type": "OfferCatalog",
+                "name": "Massaggi",
+                "itemListElement": [
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Massaggio decontratturante", "description": "Rilassamento profondo muscolare. Allevia contratture e stress." }, "price": "40.00", "priceCurrency": "EUR" },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Massaggio decontratturante 30 minuti" }, "price": "30.00", "priceCurrency": "EUR" },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Massaggio drenante", "description": "Elimina liquidi in eccesso e tossine, riduce gonfiori e migliora la circolazione." }, "price": "40.00", "priceCurrency": "EUR" },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Massaggio drenante 30 minuti" }, "price": "30.00", "priceCurrency": "EUR" },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Massaggio in gravidanza", "description": "Massaggio studiato per alleviare i disagi della gravidanza, donando relax e serenità." }, "price": "40.00", "priceCurrency": "EUR" },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Massaggio relax", "description": "Scioglie tensioni e ritrova il benessere totale. Rigenera mente e corpo." }, "price": "40.00", "priceCurrency": "EUR" },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Massaggio relax 30 minuti" }, "price": "30.00", "priceCurrency": "EUR" }
+                ]
+              },
+              {
+                "@type": "OfferCatalog",
+                "name": "Trattamenti corpo",
+                "itemListElement": [
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Protocollo Drenante corpo", "description": "Protocollo esclusivo per eliminare liquidi in eccesso, benessere profondo e silhouette rimodellata." }, "price": "80.00", "priceCurrency": "EUR" },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Protocollo lipolitico corpo", "description": "Programma su misura per sciogliere il grasso e rimodellare il corpo." }, "price": "80.00", "priceCurrency": "EUR" },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Protocollo tonificante corpo", "description": "Pelle compatta e armoniosa per risultati visibili e duraturi." }, "price": "80.00", "priceCurrency": "EUR" },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Scrub corpo", "description": "Esfoliazione profonda. Pelle levigata, luminosa e morbida." }, "price": "30.00", "priceCurrency": "EUR" }
+                ]
+              },
+              {
+                "@type": "OfferCatalog",
+                "name": "Trattamenti viso",
+                "itemListElement": [
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Consulenza viso gratuita", "description": "Percorso personalizzato per esaltare la tua unicità. Scopri il trattamento ideale per la tua pelle." }, "price": "0.00", "priceCurrency": "EUR" },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Fotobiostimolazione viso", "description": "Rivitalizza il viso con la luce. Risultati visibili per una pelle più giovane e luminosa." }, "price": "100.00", "priceCurrency": "EUR" },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Microneedling viso", "description": "Stimola il collagene e rinnova la pelle. Risultati visibili e duraturi per un incarnato radioso." }, "price": "80.00", "priceCurrency": "EUR" },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Peeling viso", "description": "Illumina e leviga la pelle rivelando una nuova radiosità." }, "price": "60.00", "priceCurrency": "EUR" },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Pulizia viso profonda", "description": "Rigenera la pelle per un incarnato luminoso e senza imperfezioni. Eseguita con spatola e prodotti specifici per ogni tipo di pelle." }, "price": "40.00", "priceCurrency": "EUR" },
+                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Renewskin", "description": "Micro-correnti che stimolano e rinnovano la pelle nel suo processo naturale di rigenerazione. Risultati visibili su viso e corpo." }, "price": "80.00", "priceCurrency": "EUR" }
+                ]
+              }
+            ]
+          }
         },
         {
           "@type": "FAQPage",
