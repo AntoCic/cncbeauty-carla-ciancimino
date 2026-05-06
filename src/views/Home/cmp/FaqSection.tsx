@@ -6,7 +6,6 @@ const FAQS = [
   { q: 'Devo prenotare in anticipo?', a: 'Sì, consigliamo sempre di prenotare per garantire disponibilità. Puoi farlo via telefono, WhatsApp o tramite il nostro form online, anche il giorno prima.' },
   { q: 'Come posso contattarvi?', a: 'Puoi chiamarci al +39 329 709 4859, scriverci su WhatsApp o mandarci un\'email. Rispondiamo di solito entro poche ore.' },
   { q: 'Dove si trova il centro?', a: 'CNC Beauty si trova in Via Enrico de Nicola 16, nel centro di Sciacca (AG), facilmente raggiungibile da tutta la provincia di Agrigento.' },
-  { q: 'Posso acquistare i prodotti direttamente in centro?', a: 'Sì, una selezione di cosmetici professionali è disponibile direttamente presso il centro. Puoi anche chiedere una consulenza per scegliere i prodotti più adatti alla tua pelle.' },
   { q: 'Come scelgo il trattamento più adatto a me?', a: 'Il modo migliore è una consulenza gratuita con Carla: insieme analizzerete la tua pelle, le tue esigenze e gli obiettivi, e costruirete il percorso più adatto.' },
 ];
 
