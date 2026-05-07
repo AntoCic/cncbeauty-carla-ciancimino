@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAppSelector } from '../../store';
+import { initAnalytics } from '../../analytics';
 import styles from './CookieBanner.module.css';
 
 const STORAGE_PREFIX = 'cnc_cookie_';
@@ -12,7 +13,11 @@ const CookieBanner = () => {
   useEffect(() => {
     if (status === 'idle' || status === 'loading') return;
     const key = STORAGE_PREFIX + cfg.cookieConsentKeyDate;
-    if (localStorage.getItem(key)) return;
+    const existing = localStorage.getItem(key);
+    if (existing) {
+      if (existing === 'accepted') initAnalytics();
+      return;
+    }
 
     const isFirstVisit = !sessionStorage.getItem('cnc_intro');
     const delay = isFirstVisit ? 3000 : 600;
@@ -22,6 +27,7 @@ const CookieBanner = () => {
 
   const close = (choice: 'accepted' | 'rejected') => {
     localStorage.setItem(STORAGE_PREFIX + cfg.cookieConsentKeyDate, choice);
+    if (choice === 'accepted') initAnalytics();
     setVisible(false);
   };
 

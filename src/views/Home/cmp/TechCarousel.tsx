@@ -24,7 +24,7 @@ const TECHS = [
     problem: 'Perdita di luminosità, pelle spenta, invecchiamento precoce, macchie superficiali e stanchezza del viso.',
     approach: 'Luce LED a specifiche lunghezze d\'onda (rosso e infrarosso) che penetra nei tessuti cutanei stimolando la produzione di collagene e ATP cellulare, accelerando i naturali processi di rigenerazione. Trattamento non invasivo e completamente indolore.',
     result: 'Viso più luminoso, tonico e visibilmente più giovane. Riduzione di macchie superficiali e segni di stanchezza. Risultati percepibili già dalla prima seduta.',
-    img: '/img/home/macchinario-viso-corpo.webp',
+    img: '/img/home/laser.webp',
     slug: 'fotobiostimolazione',
   },
   {
