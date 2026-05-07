@@ -87,7 +87,7 @@ const AboutSection = () => {
         <div className={styles.text} ref={textRef}>
           <span className="cnc-tag">La nostra storia</span>
           <h2 id="about-h">Conosci Carla</h2>
-          <p>Con oltre vent'anni di esperienza nel mondo dell'estetica professionale, Carla Ciancimino ha fondato CNC Beauty con un obiettivo chiaro: portare a Sciacca, in provincia di Agrigento, un centro dove ogni trattamento nasce dall'ascolto.</p>
+          <p>Carla Ciancimino ha fondato CNC Beauty con un obiettivo chiaro: portare a Sciacca, in provincia di Agrigento, un centro dove ogni trattamento nasce dall'ascolto.</p>
           <p>Formata tra i migliori istituti in Italia, Carla unisce tecnica raffinata e attenzione reale per ogni cliente. La cura che mette nel suo lavoro si sente fin dal primo appuntamento.</p>
           <a href="/chi-siamo" className={styles.btnOutline}>La nostra storia →</a>
         </div>

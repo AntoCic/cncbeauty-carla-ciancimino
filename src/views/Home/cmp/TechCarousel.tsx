@@ -20,12 +20,12 @@ const TECHS = [
     slug: 'microneedling',
   },
   {
-    title: 'Luce Pulsata IPL — Macchie e Uniformità',
-    problem: 'Macchie solari, arrossamenti, couperose e peli superflui resistenti.',
-    approach: 'Luce pulsata ad ampio spettro calibrata per fototipo e obiettivo. Agisce selettivamente su melanina e capillari senza ledere i tessuti circostanti, per un trattamento preciso e non invasivo.',
-    result: 'Tono della pelle più uniforme, macchie ridotte, arrossamenti e couperose attenuati. Efficace anche per l\'epilazione di completamento.',
-    img: '/img/home/laser.webp',
-    slug: 'luce-pulsata',
+    title: 'Fotobiostimolazione LED — Anti-Aging e Rigenerazione',
+    problem: 'Perdita di luminosità, pelle spenta, invecchiamento precoce, macchie superficiali e stanchezza del viso.',
+    approach: 'Luce LED a specifiche lunghezze d\'onda (rosso e infrarosso) che penetra nei tessuti cutanei stimolando la produzione di collagene e ATP cellulare, accelerando i naturali processi di rigenerazione. Trattamento non invasivo e completamente indolore.',
+    result: 'Viso più luminoso, tonico e visibilmente più giovane. Riduzione di macchie superficiali e segni di stanchezza. Risultati percepibili già dalla prima seduta.',
+    img: '/img/home/macchinario-viso-corpo.webp',
+    slug: 'fotobiostimolazione',
   },
   {
     title: 'Suite Tecnologica Viso e Corpo',
