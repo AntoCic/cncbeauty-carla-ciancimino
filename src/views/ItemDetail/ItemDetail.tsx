@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { getTreatmentById } from '../../db/treatment/treatmentRepo';
-import { getProductById } from '../../db/product/productRepo';
-import { getTreatmentCategoryById } from '../../db/treatmentCategory/treatmentCategoryRepo';
+import { getTreatmentBySlug } from '../../db/treatment/treatmentRepo';
+import { getProductBySlug } from '../../db/product/productRepo';
+import { getTreatmentCategoryBySlug } from '../../db/treatmentCategory/treatmentCategoryRepo';
 import type { TreatmentData } from '../../models/Treatment';
 import type { ProductData } from '../../models/Product';
 import { useAppSelector } from '../../store';
@@ -20,7 +20,7 @@ const fmt = (price: number) =>
   new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR' }).format(price);
 
 const ItemDetail = ({ type }: Props) => {
-  const { categoryId, id } = useParams<{ categoryId: string; id: string }>();
+  const { categorySlug, slug } = useParams<{ categorySlug: string; slug: string }>();
   const cfg = useAppSelector(s => s.appConfig.data);
   const [item, setItem] = useState<TreatmentData | ProductData | null>(null);
   const [heroImg, setHeroImg] = useState('');
@@ -29,18 +29,18 @@ const ItemDetail = ({ type }: Props) => {
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
 
-  const backTo = type === 'treatment' ? `/trattamenti/${categoryId}` : `/prodotti/${categoryId}`;
+  const backTo = type === 'treatment' ? `/trattamenti/${categorySlug}` : `/prodotti/${categorySlug}`;
   const backLabel = type === 'treatment' ? '← Trattamenti' : '← Prodotti';
 
   const WA_URL = `https://wa.me/${cfg.publicPhone.replace(/\D/g, '')}?text=Ciao%21%20Vorrei%20prenotare%20una%20consulenza`;
 
   useEffect(() => {
-    if (!id) return;
+    if (!slug) return;
 
     if (type === 'treatment') {
       Promise.all([
-        getTreatmentById(id),
-        categoryId ? getTreatmentCategoryById(categoryId) : Promise.resolve(null),
+        getTreatmentBySlug(slug),
+        categorySlug ? getTreatmentCategoryBySlug(categorySlug) : Promise.resolve(null),
       ]).then(([data, cat]) => {
         if (!data) { setNotFound(true); return; }
         setItem(data);
@@ -50,7 +50,7 @@ const ItemDetail = ({ type }: Props) => {
         document.title = `${data.title} – CNC Beauty Sciacca`;
       }).finally(() => setLoading(false));
     } else {
-      getProductById(id).then(data => {
+      getProductBySlug(slug).then(data => {
         if (!data) { setNotFound(true); return; }
         setItem(data);
         const imgs = (data as ProductData).imgUrls ?? [];
@@ -59,7 +59,7 @@ const ItemDetail = ({ type }: Props) => {
         document.title = `${data.title} – CNC Beauty Sciacca`;
       }).finally(() => setLoading(false));
     }
-  }, [id, type, categoryId]);
+  }, [slug, type, categorySlug]);
 
   if (loading) return (
     <>
@@ -111,7 +111,7 @@ const ItemDetail = ({ type }: Props) => {
               {type === 'treatment' ? 'Trattamenti' : 'Prodotti'}
             </Link>
             <span>›</span>
-            <Link to={backTo}>{categoryId}</Link>
+            <Link to={backTo}>{categorySlug}</Link>
             <span>›</span>
             <span aria-current="page">{item.title}</span>
           </nav>

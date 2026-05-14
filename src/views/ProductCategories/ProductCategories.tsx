@@ -17,7 +17,7 @@ const BG_PALETTE = [
   'linear-gradient(145deg,#B8A0C8,#A890B8)',
 ];
 
-type CatItem = { id: string; title: string; subtitle: string; imgUrl: string; emoji: string; bg: string };
+type CatItem = { id: string; slug: string; title: string; subtitle: string; imgUrl: string; emoji: string; bg: string };
 
 const WA_URL = 'https://wa.me/393297094859?text=Ciao%21+Vorrei+una+consulenza+sui+prodotti';
 
@@ -32,6 +32,7 @@ const ProductCategories = () => {
     getProductCategories()
       .then(data => setCats(data.map((c, i) => ({
         id: c.id,
+        slug: c.slug ?? c.id,
         title: c.title,
         subtitle: c.subtitle ?? '',
         imgUrl: c.imgUrls?.[0] ?? '',
@@ -86,7 +87,7 @@ const ProductCategories = () => {
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.15 + i * 0.08 }}
               >
-                <Link to={`/prodotti/${cat.id}`} className={styles.card}>
+                <Link to={`/prodotti/${cat.slug}`} className={styles.card}>
                   <div
                     className={styles.cardImg}
                     style={cat.imgUrl

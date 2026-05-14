@@ -1,4 +1,4 @@
-import { collection, doc, getDoc, getDocs } from 'firebase/firestore';
+import { collection, doc, getDoc, getDocs, query, where } from 'firebase/firestore';
 import { db } from '../../components/firebase/firebase';
 import type { ProductCategoryData } from '../../models/ProductCategory';
 
@@ -19,5 +19,18 @@ export async function getProductCategoryById(id: string): Promise<ProductCategor
   }
   const result = { id: snap.id, ...snap.data() } as ProductCategoryData;
   console.log(`[db] getProductCategoryById: got`, result);
+  return result;
+}
+
+export async function getProductCategoryBySlug(slug: string): Promise<ProductCategoryData | null> {
+  console.log(`[db] getProductCategoryBySlug: fetching slug=${slug}`);
+  const snap = await getDocs(query(collection(db, 'productsCategories'), where('slug', '==', slug)));
+  if (snap.empty) {
+    console.warn(`[db] getProductCategoryBySlug: not found slug=${slug}`);
+    return null;
+  }
+  const d = snap.docs[0];
+  const result = { id: d.id, ...d.data() } as ProductCategoryData;
+  console.log(`[db] getProductCategoryBySlug: got`, result);
   return result;
 }

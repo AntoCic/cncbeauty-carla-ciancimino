@@ -34,10 +34,10 @@ const Home = () => {
       <main>
         <HeroSection animate={heroReady} />
         <EntryPoints />
+        <Testimonials />
         <WhyUs />
         <TechCarousel />
         <AboutSection />
-        <Testimonials />
         <ContactsSection />
         <FaqSection />
       </main>

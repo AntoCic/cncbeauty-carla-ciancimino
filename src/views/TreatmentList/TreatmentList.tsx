@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
 import { getTreatmentsByCategory } from '../../db/treatment/treatmentRepo';
-import { getTreatmentCategoryById } from '../../db/treatmentCategory/treatmentCategoryRepo';
+import { getTreatmentCategoryBySlug } from '../../db/treatmentCategory/treatmentCategoryRepo';
 import type { TreatmentData } from '../../models/Treatment';
 import FloatingNav from '../../components/FloatingNav/FloatingNav';
 import SiteFooter from '../../components/SiteFooter/SiteFooter';
@@ -30,7 +30,7 @@ const fmt = (price: number) =>
   new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR' }).format(price);
 
 const TreatmentList = () => {
-  const { categoryId } = useParams<{ categoryId: string }>();
+  const { categorySlug } = useParams<{ categorySlug: string }>();
   const [categoryTitle, setCategoryTitle] = useState('');
   const [categoryImgUrl, setCategoryImgUrl] = useState('');
   const [treatments, setTreatments] = useState<TreatmentData[]>([]);
@@ -39,20 +39,18 @@ const TreatmentList = () => {
   const inView = useInView(ref, { once: true, margin: '0px 0px -60px 0px' });
 
   useEffect(() => {
-    if (!categoryId) return;
+    if (!categorySlug) return;
     document.title = `Trattamenti – CNC Beauty Sciacca (AG)`;
-    Promise.all([
-      getTreatmentCategoryById(categoryId),
-      getTreatmentsByCategory(categoryId),
-    ]).then(([cat, items]) => {
+    getTreatmentCategoryBySlug(categorySlug).then(async cat => {
       if (cat) {
         setCategoryTitle(cat.title);
         setCategoryImgUrl(cat.imgUrls?.[0] ?? '');
         document.title = `${cat.title} – CNC Beauty Sciacca (AG)`;
+        const items = await getTreatmentsByCategory(cat.id);
+        setTreatments(items);
       }
-      setTreatments(items);
     }).finally(() => setLoading(false));
-  }, [categoryId]);
+  }, [categorySlug]);
 
   return (
     <>
@@ -129,7 +127,7 @@ const TreatmentList = () => {
                 transition={{ duration: 0.55, delay: i * 0.07 }}
               >
                 <Link
-                  to={`/trattamenti/${categoryId}/${t.id}`}
+                  to={`/trattamenti/${categorySlug}/${t.slug ?? t.id}`}
                   className={styles.card}
                 >
                   <div className={styles.cardImg} style={{ background: cardBg(t, i) }}>

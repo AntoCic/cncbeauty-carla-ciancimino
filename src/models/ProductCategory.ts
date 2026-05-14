@@ -1,5 +1,6 @@
 export interface ProductCategoryData {
   id: string
+  slug?: string
   title: string
   subtitle?: string
   emoji?: string

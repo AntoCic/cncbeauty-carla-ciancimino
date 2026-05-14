@@ -16,7 +16,7 @@ const BG_PALETTE = [
   'linear-gradient(145deg,#C490A0,#B48090,#A47080)',
 ];
 
-type CatItem = { id: string; title: string; subtitle: string; imgUrl: string; emoji: string; bg: string; num: string };
+type CatItem = { id: string; slug: string; title: string; subtitle: string; imgUrl: string; emoji: string; bg: string; num: string };
 
 const WA_URL = 'https://wa.me/393297094859?text=Ciao%21+Vorrei+prenotare+una+consulenza+gratuita';
 
@@ -31,6 +31,7 @@ const TreatmentCategories = () => {
     getTreatmentCategories()
       .then(data => setCats(data.map((c, i) => ({
         id: c.id,
+        slug: c.slug ?? c.id,
         title: c.title,
         subtitle: c.subtitle ?? '',
         imgUrl: c.imgUrls?.[0] ?? '',
@@ -85,7 +86,7 @@ const TreatmentCategories = () => {
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: i * 0.08 }}
               >
-                <Link to={`/trattamenti/${cat.id}`} className={styles.card}>
+                <Link to={`/trattamenti/${cat.slug}`} className={styles.card}>
                   <div
                     className={styles.cardBg}
                     style={cat.imgUrl

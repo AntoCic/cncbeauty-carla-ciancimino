@@ -24,3 +24,16 @@ export async function getTreatmentById(id: string): Promise<TreatmentData | null
   console.log(`[db] getTreatmentById: got`, result);
   return result;
 }
+
+export async function getTreatmentBySlug(slug: string): Promise<TreatmentData | null> {
+  console.log(`[db] getTreatmentBySlug: fetching slug=${slug}`);
+  const snap = await getDocs(query(collection(db, 'treatments'), where('slug', '==', slug)));
+  if (snap.empty) {
+    console.warn(`[db] getTreatmentBySlug: not found slug=${slug}`);
+    return null;
+  }
+  const d = snap.docs[0];
+  const result = { id: d.id, ...d.data() } as TreatmentData;
+  console.log(`[db] getTreatmentBySlug: got`, result);
+  return result;
+}

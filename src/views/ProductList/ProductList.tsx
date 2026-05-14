@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
 import { getProductsByCategory } from '../../db/product/productRepo';
-import { getProductCategoryById } from '../../db/productCategory/productCategoryRepo';
+import { getProductCategoryBySlug } from '../../db/productCategory/productCategoryRepo';
 import type { ProductData } from '../../models/Product';
 import type { ProductCategoryData } from '../../models/ProductCategory';
 import FloatingNav from '../../components/FloatingNav/FloatingNav';
@@ -15,7 +15,7 @@ const fmt = (price: number) =>
   new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR' }).format(price);
 
 const ProductList = () => {
-  const { categoryId } = useParams<{ categoryId: string }>();
+  const { categorySlug } = useParams<{ categorySlug: string }>();
   const cfg = useAppSelector(s => s.appConfig.data);
   const [category, setCategory] = useState<ProductCategoryData | null>(null);
   const [products, setProducts] = useState<ProductData[]>([]);
@@ -26,18 +26,16 @@ const ProductList = () => {
   const WA_URL = `https://wa.me/${cfg.publicPhone.replace(/\D/g, '')}?text=Ciao%21%20Vorrei%20sapere%20di%20pi%C3%B9%20sui%20prodotti`;
 
   useEffect(() => {
-    if (!categoryId) return;
-    Promise.all([
-      getProductCategoryById(categoryId),
-      getProductsByCategory(categoryId),
-    ]).then(([cat, items]) => {
+    if (!categorySlug) return;
+    getProductCategoryBySlug(categorySlug).then(async cat => {
       if (cat) {
         setCategory(cat);
         document.title = `${cat.title} – CNC Beauty Sciacca (AG)`;
+        const items = await getProductsByCategory(cat.id);
+        setProducts(items);
       }
-      setProducts(items);
     }).finally(() => setLoading(false));
-  }, [categoryId]);
+  }, [categorySlug]);
 
   const categoryTitle = category?.title ?? 'Categoria';
   const categoryImg = category?.imgUrls?.[0] ?? '';
@@ -109,7 +107,7 @@ const ProductList = () => {
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.55, delay: i * 0.07 }}
               >
-                <Link to={`/prodotti/${categoryId}/${p.id}`} className={styles.card}>
+                <Link to={`/prodotti/${categorySlug}/${p.slug ?? p.id}`} className={styles.card}>
                   <div
                     className={styles.cardImg}
                     style={p.imgUrls?.[0]

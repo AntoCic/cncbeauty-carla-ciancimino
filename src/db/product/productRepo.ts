@@ -24,3 +24,16 @@ export async function getProductById(id: string): Promise<ProductData | null> {
   console.log(`[db] getProductById: got`, result);
   return result;
 }
+
+export async function getProductBySlug(slug: string): Promise<ProductData | null> {
+  console.log(`[db] getProductBySlug: fetching slug=${slug}`);
+  const snap = await getDocs(query(collection(db, 'products'), where('slug', '==', slug)));
+  if (snap.empty) {
+    console.warn(`[db] getProductBySlug: not found slug=${slug}`);
+    return null;
+  }
+  const d = snap.docs[0];
+  const result = { id: d.id, ...d.data() } as ProductData;
+  console.log(`[db] getProductBySlug: got`, result);
+  return result;
+}

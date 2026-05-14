@@ -1,5 +1,6 @@
 export interface TreatmentData {
   id: string
+  slug?: string
   old_id?: string
   title: string
   subtitle?: string

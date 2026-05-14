@@ -1,4 +1,4 @@
-import { collection, doc, getDoc, getDocs } from 'firebase/firestore';
+import { collection, doc, getDoc, getDocs, query, where } from 'firebase/firestore';
 import { db } from '../../components/firebase/firebase';
 import type { TreatmentCategoryData } from '../../models/TreatmentCategory';
 
@@ -19,5 +19,18 @@ export async function getTreatmentCategoryById(id: string): Promise<TreatmentCat
   }
   const result = { id: snap.id, ...snap.data() } as TreatmentCategoryData;
   console.log(`[db] getTreatmentCategoryById: got`, result);
+  return result;
+}
+
+export async function getTreatmentCategoryBySlug(slug: string): Promise<TreatmentCategoryData | null> {
+  console.log(`[db] getTreatmentCategoryBySlug: fetching slug=${slug}`);
+  const snap = await getDocs(query(collection(db, 'treatmentsCategories'), where('slug', '==', slug)));
+  if (snap.empty) {
+    console.warn(`[db] getTreatmentCategoryBySlug: not found slug=${slug}`);
+    return null;
+  }
+  const d = snap.docs[0];
+  const result = { id: d.id, ...d.data() } as TreatmentCategoryData;
+  console.log(`[db] getTreatmentCategoryBySlug: got`, result);
   return result;
 }
