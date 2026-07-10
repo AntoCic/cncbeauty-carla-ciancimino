@@ -189,7 +189,7 @@
   font-weight: 600;
   color: var(--plum-mid);
 }
-.metaItem .material-symbols-outlined { font-size: 14px; }
+.metaItem :global(.material-symbols-outlined) { font-size: 14px; }
 
 .cardArrow {
   display: flex;

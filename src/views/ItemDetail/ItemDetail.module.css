@@ -89,7 +89,7 @@
   border: 1.5px solid rgba(255,255,255,.3);
   backdrop-filter: blur(4px);
 }
-.badgeDur .material-symbols-outlined { font-size: 15px; }
+.badgeDur :global(.material-symbols-outlined) { font-size: 15px; }
 
 /* ── Page Body ── */
 .pageBody {

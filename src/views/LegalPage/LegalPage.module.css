@@ -75,7 +75,7 @@
   font-size: 13.5px;
   color: var(--plum-mid);
 }
-.metaItem .material-symbols-outlined {
+.metaItem :global(.material-symbols-outlined) {
   font-size: 17px;
   color: var(--rose);
 }
