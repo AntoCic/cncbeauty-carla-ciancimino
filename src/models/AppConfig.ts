@@ -30,7 +30,6 @@ export interface AppConfigData {
   breakEnd: string
   dayEnd: string
   workingDays?: number[]
-  appointmentSlotMinutes: number
   defaultAppointmentDurationMinutes: number
   personalAppointmentDurationMinutes: number
   calendarPrefetchMonths: number
@@ -71,7 +70,6 @@ export const APP_CONFIG_DEFAULTS: Omit<AppConfigData, 'id'> = {
   breakEnd: '14:00',
   dayEnd: '19:00',
   workingDays: [1, 2, 3, 4, 5],
-  appointmentSlotMinutes: 15,
   defaultAppointmentDurationMinutes: 60,
   personalAppointmentDurationMinutes: 30,
   calendarPrefetchMonths: 1,
