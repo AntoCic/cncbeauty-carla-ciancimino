@@ -1,4 +1,15 @@
+import type { Timestamp } from 'firebase/firestore'
+
 export const APP_CONFIG_ID = 'main'
+
+export interface AppConfigReview {
+  id: string
+  name: string
+  text: string
+  date: Timestamp
+  stars: number
+  favorite: boolean
+}
 
 export interface AppConfigData {
   id: string
@@ -39,6 +50,7 @@ export interface AppConfigData {
   googleCalendarId: string
   googleCalendarAccessRole: string
   googleCalendarAllowedEmailsCsv: string
+  reviews?: AppConfigReview[]
 }
 
 export const APP_CONFIG_DEFAULTS: Omit<AppConfigData, 'id'> = {
@@ -79,4 +91,5 @@ export const APP_CONFIG_DEFAULTS: Omit<AppConfigData, 'id'> = {
   googleCalendarId: '',
   googleCalendarAccessRole: 'writer',
   googleCalendarAllowedEmailsCsv: '',
+  reviews: [],
 }

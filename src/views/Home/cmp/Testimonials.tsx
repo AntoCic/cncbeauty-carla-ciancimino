@@ -1,6 +1,7 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useAppSelector } from '../../../store';
 import styles from './Testimonials.module.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -16,30 +17,22 @@ const GoogleIcon = () => (
   </svg>
 );
 
-const REVIEWS = [
-  {
-    text: '"Carla è straordinaria! Ho fatto il percorso di epilazione laser e sono rimasta senza parole. Dopo poche sedute ho visto risultati concreti. Centro pulito, accogliente e professionale. Lo consiglio a tutte!"',
-    name: 'Marianna C.',
-    location: 'Sciacca',
-  },
-  {
-    text: '"Finalmente il centro estetico di fiducia che cercavo. Ho provato il microneedling e la mia pelle è completamente cambiata. Carla personalizza ogni percorso con professionalità e dedizione vera."',
-    name: 'Roberta P.',
-    location: 'Agrigento',
-  },
-  {
-    text: '"Esperienza meravigliosa! La radiofrequenza viso ha dato risultati visibili già dalla prima seduta. Ambiente elegante, personale preparato e prezzi onesti. Cinque stelle assolutamente meritatissime!"',
-    name: 'Giusy M.',
-    location: 'Sciacca',
-  },
-];
-
 const Testimonials = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const headRef    = useRef<HTMLDivElement>(null);
   const cardRefs   = useRef<(HTMLDivElement | null)[]>([]);
 
+  const reviews = useAppSelector((s) => s.appConfig.data.reviews ?? []);
+  const favoriteReviews = useMemo(
+    () =>
+      reviews
+        .filter((r) => r.favorite)
+        .sort((a, b) => b.date.toMillis() - a.date.toMillis()),
+    [reviews],
+  );
+
   useEffect(() => {
+    if (favoriteReviews.length === 0) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     gsap.fromTo(headRef.current,
@@ -54,7 +47,7 @@ const Testimonials = () => {
     cardRefs.current.forEach((card, i) => {
       if (!card) return;
       gsap.fromTo(card,
-        { opacity: 0, x: directions[i], y: 30 },
+        { opacity: 0, x: directions[i % directions.length], y: 30 },
         {
           opacity: 1, x: 0, y: 0, duration: 0.82, ease: 'power3.out',
           scrollTrigger: { trigger: headRef.current, start: 'top 82%' },
@@ -78,7 +71,9 @@ const Testimonials = () => {
         .filter(t => t.vars.trigger === headRef.current)
         .forEach(t => t.kill());
     };
-  }, []);
+  }, [favoriteReviews]);
+
+  if (favoriteReviews.length === 0) return null;
 
   return (
     <section id="test" className={styles.section} aria-labelledby="test-h" ref={sectionRef}>
@@ -88,14 +83,16 @@ const Testimonials = () => {
         <p className={styles.headSub}>Recensioni verificate su Google</p>
       </div>
       <div className={styles.grid}>
-        {REVIEWS.map((r, i) => (
+        {favoriteReviews.map((r, i) => (
           <div
-            key={r.name}
+            key={r.id}
             className={styles.card}
             ref={el => { cardRefs.current[i] = el; }}
           >
             <div className={styles.cardTop}>
-              <div className={styles.stars} aria-label="5 stelle">★★★★★</div>
+              <div className={styles.stars} aria-label={`${r.stars} stelle`}>
+                {'★'.repeat(r.stars)}{'☆'.repeat(5 - r.stars)}
+              </div>
               <div className={styles.googleBadge}>
                 <GoogleIcon />
                 <span>Google</span>
@@ -106,7 +103,6 @@ const Testimonials = () => {
               <div className={styles.avatar} aria-hidden="true">{r.name[0]}</div>
               <div>
                 <span className={styles.name}>{r.name}</span>
-                <span className={styles.location}>{r.location}</span>
               </div>
             </div>
           </div>
