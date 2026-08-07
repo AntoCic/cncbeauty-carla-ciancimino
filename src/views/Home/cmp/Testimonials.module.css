@@ -105,6 +105,35 @@
   margin-top: 1px;
 }
 
+/* ── Mostra altre ── */
+.showMoreWrap {
+  display: flex;
+  justify-content: center;
+  margin-top: 28px;
+}
+
+.showMoreBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: none;
+  color: var(--plum);
+  font-family: var(--fb, inherit);
+  font-size: 13.5px;
+  font-weight: 600;
+  letter-spacing: .03em;
+  cursor: pointer;
+  padding: 8px 4px;
+}
+.showMoreBtn:hover { color: var(--rose); }
+
+.showMoreIcon {
+  font-size: 20px;
+  transition: transform .25s ease;
+}
+.showMoreIconOpen { transform: rotate(180deg); }
+
 /* ── CTA ── */
 .cta {
   display: flex;

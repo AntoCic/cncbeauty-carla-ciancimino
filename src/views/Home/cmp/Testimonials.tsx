@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useAppSelector } from '../../../store';
@@ -7,6 +7,7 @@ import styles from './Testimonials.module.css';
 gsap.registerPlugin(ScrollTrigger);
 
 const GOOGLE_REVIEW_URL = 'https://g.page/r/CYoaAc0R-5D4EBM/review';
+const COLLAPSED_COUNT = 3;
 
 const GoogleIcon = () => (
   <svg viewBox="0 0 24 24" width="16" height="16" aria-label="Google" className={styles.googleIcon}>
@@ -22,17 +23,23 @@ const Testimonials = () => {
   const headRef    = useRef<HTMLDivElement>(null);
   const cardRefs   = useRef<(HTMLDivElement | null)[]>([]);
 
+  const [expanded, setExpanded] = useState(false);
+
   const reviews = useAppSelector((s) => s.appConfig.data.reviews ?? []);
-  const favoriteReviews = useMemo(
-    () =>
-      reviews
-        .filter((r) => r.favorite)
-        .sort((a, b) => b.date.toMillis() - a.date.toMillis()),
-    [reviews],
-  );
+  // Tutte le recensioni vengono mostrate; quelle "in evidenza" (favorite,
+  // curate dal gestionale, max 3) vanno per prime, il resto segue in ordine
+  // cronologico decrescente.
+  const sortedReviews = useMemo(() => {
+    const byDateDesc = (a: typeof reviews[number], b: typeof reviews[number]) => b.date.toMillis() - a.date.toMillis();
+    const featured = reviews.filter((r) => r.favorite).sort(byDateDesc);
+    const rest = reviews.filter((r) => !r.favorite).sort(byDateDesc);
+    return [...featured, ...rest];
+  }, [reviews]);
+  const hasMore = sortedReviews.length > COLLAPSED_COUNT;
+  const visibleReviews = expanded ? sortedReviews : sortedReviews.slice(0, COLLAPSED_COUNT);
 
   useEffect(() => {
-    if (favoriteReviews.length === 0) return;
+    if (visibleReviews.length === 0) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     gsap.fromTo(headRef.current,
@@ -71,9 +78,9 @@ const Testimonials = () => {
         .filter(t => t.vars.trigger === headRef.current)
         .forEach(t => t.kill());
     };
-  }, [favoriteReviews]);
+  }, [visibleReviews]);
 
-  if (favoriteReviews.length === 0) return null;
+  if (sortedReviews.length === 0) return null;
 
   return (
     <section id="test" className={styles.section} aria-labelledby="test-h" ref={sectionRef}>
@@ -83,7 +90,7 @@ const Testimonials = () => {
         <p className={styles.headSub}>Recensioni verificate su Google</p>
       </div>
       <div className={styles.grid}>
-        {favoriteReviews.map((r, i) => (
+        {visibleReviews.map((r, i) => (
           <div
             key={r.id}
             className={styles.card}
@@ -108,6 +115,23 @@ const Testimonials = () => {
           </div>
         ))}
       </div>
+
+      {hasMore && (
+        <div className={styles.showMoreWrap}>
+          <button
+            type="button"
+            className={styles.showMoreBtn}
+            onClick={() => setExpanded((prev) => !prev)}
+            aria-expanded={expanded}
+          >
+            {expanded ? 'Mostra meno' : `Mostra altre ${sortedReviews.length - COLLAPSED_COUNT} recensioni`}
+            <span className={`material-symbols-outlined ${styles.showMoreIcon} ${expanded ? styles.showMoreIconOpen : ''}`} aria-hidden>
+              expand_more
+            </span>
+          </button>
+        </div>
+      )}
+
       <div className={styles.cta}>
         <a
           href={GOOGLE_REVIEW_URL}
