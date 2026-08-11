@@ -7,6 +7,7 @@ import TreatmentList from './views/TreatmentList/TreatmentList';
 import ProductList from './views/ProductList/ProductList';
 import ItemDetail from './views/ItemDetail/ItemDetail';
 import LegalPage from './views/LegalPage/LegalPage';
+import LaserShareForm from './views/LaserShareForm/LaserShareForm';
 import CookieBanner from './components/CookieBanner/CookieBanner';
 import { trackPageView } from './analytics';
 
@@ -41,6 +42,7 @@ export const router = createBrowserRouter([
       { path: '/privacy', element: <LegalPage type="privacy" /> },
       { path: '/cookie', element: <LegalPage type="cookie" /> },
       { path: '/termini', element: <LegalPage type="terms" /> },
+      { path: '/laser-share/:token', element: <LaserShareForm /> },
     ],
   },
 ]);
