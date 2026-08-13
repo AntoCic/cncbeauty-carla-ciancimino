@@ -11,6 +11,13 @@ export interface AppConfigReview {
   favorite: boolean
 }
 
+export interface AppConfigFaq {
+  id: string
+  question: string
+  answer: string
+  priority: number
+}
+
 export interface AppConfigData {
   id: string
   brandName: string
@@ -51,6 +58,7 @@ export interface AppConfigData {
   googleCalendarAccessRole: string
   googleCalendarAllowedEmailsCsv: string
   reviews?: AppConfigReview[]
+  faq?: AppConfigFaq[]
 }
 
 export const APP_CONFIG_DEFAULTS: Omit<AppConfigData, 'id'> = {
@@ -92,4 +100,5 @@ export const APP_CONFIG_DEFAULTS: Omit<AppConfigData, 'id'> = {
   googleCalendarAccessRole: 'writer',
   googleCalendarAllowedEmailsCsv: '',
   reviews: [],
+  faq: [],
 }
