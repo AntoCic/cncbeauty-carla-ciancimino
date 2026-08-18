@@ -32,6 +32,7 @@ const fmt = (price: number) =>
 
 const TreatmentList = () => {
   const { categorySlug } = useParams<{ categorySlug: string }>();
+  const [categoryId, setCategoryId] = useState<string | undefined>(undefined);
   const [categoryTitle, setCategoryTitle] = useState('');
   const [categoryImgUrl, setCategoryImgUrl] = useState('');
   const [treatments, setTreatments] = useState<TreatmentData[]>([]);
@@ -44,6 +45,7 @@ const TreatmentList = () => {
     document.title = `Trattamenti – CNC Beauty Sciacca (AG)`;
     getTreatmentCategoryBySlug(categorySlug).then(async cat => {
       if (cat) {
+        setCategoryId(cat.id);
         setCategoryTitle(cat.title);
         setCategoryImgUrl(cat.imgUrls?.[0] ?? '');
         document.title = `${cat.title} – CNC Beauty Sciacca (AG)`;
@@ -99,7 +101,7 @@ const TreatmentList = () => {
         </div>
       </div>
 
-      <PromoStrip type="treatments" />
+      <PromoStrip type="treatments" categoryId={categoryId} />
 
       {/* Body */}
       <div className={styles.pageBody}>

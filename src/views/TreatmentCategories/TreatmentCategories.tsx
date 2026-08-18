@@ -5,6 +5,7 @@ import { getTreatmentCategories } from '../../db/treatmentCategory/treatmentCate
 import FloatingNav from '../../components/FloatingNav/FloatingNav';
 import SiteFooter from '../../components/SiteFooter/SiteFooter';
 import WaFab from '../../components/WaFab/WaFab';
+import PromoStrip from '../../components/PromoStrip/PromoStrip';
 import styles from './TreatmentCategories.module.css';
 
 const BG_PALETTE = [
@@ -57,6 +58,8 @@ const TreatmentCategories = () => {
           <p>Percorsi estetici professionali a Sciacca, Agrigento. Ogni trattamento nasce da una consulenza personalizzata con Carla.</p>
         </div>
       </div>
+
+      <PromoStrip type="treatments" />
 
       <main className={styles.main}>
         <motion.div

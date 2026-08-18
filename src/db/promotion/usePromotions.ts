@@ -2,14 +2,14 @@ import { useEffect, useState } from 'react';
 import { getActivePromotionsToday } from './promotionRepo';
 import type { PromotionData } from '../../models/Promotion';
 
-export function useActivePromotions(type?: PromotionData['type']) {
+export function useActivePromotions(pageType?: 'products' | 'treatments', categoryId?: string) {
   const [promotions, setPromotions] = useState<PromotionData[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     let cancelled = false;
     setLoading(true);
-    getActivePromotionsToday(type)
+    getActivePromotionsToday(pageType, categoryId)
       .then((items) => {
         if (!cancelled) setPromotions(items);
       })
@@ -20,7 +20,7 @@ export function useActivePromotions(type?: PromotionData['type']) {
     return () => {
       cancelled = true;
     };
-  }, [type]);
+  }, [pageType, categoryId]);
 
   return { promotions, loading };
 }

@@ -80,7 +80,7 @@ const ProductList = () => {
         </div>
       </div>
 
-      <PromoStrip type="products" />
+      <PromoStrip type="products" categoryId={category?.id} />
 
       <div className={styles.pageBody}>
         <div ref={ref}>

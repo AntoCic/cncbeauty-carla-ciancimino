@@ -6,11 +6,12 @@ import type { PromotionData } from '../../models/Promotion';
 import styles from './PromoStrip.module.css';
 
 interface PromoStripProps {
-  type: PromotionData['type'];
+  type: 'products' | 'treatments';
+  categoryId?: string;
 }
 
-export const PromoStrip = ({ type }: PromoStripProps) => {
-  const { promotions } = useActivePromotions(type);
+export const PromoStrip = ({ type, categoryId }: PromoStripProps) => {
+  const { promotions } = useActivePromotions(type, categoryId);
   const [selected, setSelected] = useState<PromotionData | null>(null);
 
   if (promotions.length === 0) return null;

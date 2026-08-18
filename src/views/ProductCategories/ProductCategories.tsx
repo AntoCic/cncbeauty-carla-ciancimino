@@ -5,6 +5,7 @@ import { getProductCategories } from '../../db/productCategory/productCategoryRe
 import FloatingNav from '../../components/FloatingNav/FloatingNav';
 import SiteFooter from '../../components/SiteFooter/SiteFooter';
 import WaFab from '../../components/WaFab/WaFab';
+import PromoStrip from '../../components/PromoStrip/PromoStrip';
 import styles from './ProductCategories.module.css';
 
 const BG_PALETTE = [
@@ -57,6 +58,8 @@ const ProductCategories = () => {
           <p>Una selezione accurata di cosmetici professionali disponibili nel centro CNC Beauty a Sciacca. Qualità certificata per la tua beauty routine quotidiana.</p>
         </div>
       </div>
+
+      <PromoStrip type="products" />
 
       <main className={styles.main}>
         <motion.div

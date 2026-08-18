@@ -6,7 +6,8 @@ export interface PromotionData {
   title: string;
   description: string;
   imageUrl: string;
-  type: 'products' | 'treatments';
+  type: 'general' | 'products' | 'treatments';
+  categoryIds?: string[];
   startDate: Timestamp;
   endDate: Timestamp;
   active: boolean;
