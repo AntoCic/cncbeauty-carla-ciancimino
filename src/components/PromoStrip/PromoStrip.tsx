@@ -25,12 +25,23 @@ export const PromoStrip = ({ type, categoryId }: PromoStripProps) => {
             type="button"
             className={styles.card}
             onClick={() => setSelected(promo)}
-            initial={{ opacity: 0, y: 12 }}
+            initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4, delay: i * 0.06 }}
+            transition={{ duration: 0.45, delay: i * 0.07, ease: [0.16, 1, 0.3, 1] }}
+            whileHover={{ y: -4 }}
           >
-            <span className={styles.cardTitle}>{promo.title}</span>
-            <span className={styles.cardDescription}>{promo.description}</span>
+            <span className={styles.cardBody}>
+              <span className={styles.cardBadge}>
+                <span className="material-symbols-outlined" aria-hidden>local_offer</span>
+                Promo
+              </span>
+              <span className={styles.cardTitle}>{promo.title}</span>
+              <span className={styles.cardDescription}>{promo.description}</span>
+            </span>
+            <span className={styles.cardCta}>
+              Scopri di più
+              <span className="material-symbols-outlined" aria-hidden>arrow_forward</span>
+            </span>
           </motion.button>
         ))}
       </div>
