@@ -1,0 +1,203 @@
+# CNC Beauty
+
+> Centro estetico a Sciacca (AG), gestito da Carla Ciancimino.
+
+Indirizzo: Via Enrico de Nicola, 16, 92019 Sciacca (AG)
+Telefono/WhatsApp: +39 329 709 4859
+Email: carla.ciancimino99@gmail.com
+Sito: https://cncbeauty.it
+
+## Trattamenti
+
+### Massaggi
+- Consulenza — 0.00 EUR
+- Massaggio decontratturante — 40.00 EUR
+- Massaggio decontratturante 30min — 30.00 EUR
+- Massaggio drenante — 40.00 EUR
+- Massaggio drenante 30min — 30.00 EUR
+- Massaggio in gravidanza — 40.00 EUR
+- Massaggio relax — 40.00 EUR
+- Massaggio relax 30 min — 30.00 EUR
+
+### Ceretta
+- Ceretta ascelle donna — 8.00 EUR
+- Ceretta baffetto — 3.00 EUR
+- Ceretta braccia donna — 10.00 EUR
+- Ceretta braccia uomo — 18.00 EUR
+- Ceretta gamba completa donna — 25.00 EUR
+- Ceretta gamba completa uomo — 30.00 EUR
+- Ceretta inguine completo — 10.00 EUR
+- Ceretta inguine parziale donna — 6.00 EUR
+- Ceretta mezza gamba donns — 15.00 EUR
+- Ceretta mezza gamba uomo — 20.00 EUR
+- Ceretta petto uomo — 25.00 EUR
+- Ceretta schiena donna — 15.00 EUR
+- Ceretta schiena uomo — 25.00 EUR
+- Ceretta sopracciglia — 3.00 EUR
+- Ceretta viso — 6.00 EUR
+
+### Trattamenti viso
+- Consulenza — 0.00 EUR
+- Fotobiostimolazione viso — 100.00 EUR
+- Microneedling — 80.00 EUR
+- Peeling — 60.00 EUR
+- Pulizia viso — 40.00 EUR
+- Renewskin — 80.00 EUR
+- Veicolare trasdermico — 65.00 EUR
+
+### Trattamenti corpo
+- Consulenza — 0.00 EUR
+- Microneedling — 80.00 EUR
+- Protocollo Drenante — 80.00 EUR
+- Protocollo lipolitico — 80.00 EUR
+- Protocollo tonificante — 80.00 EUR
+- Renewskin — 80.00 EUR
+- Scrub corpo — 30.00 EUR
+
+### Laminazione ciglia e sopracciglia
+- Laminazione ciglia — 40.00 EUR
+- Laminazione ciglia e sopracciglia — 60.00 EUR
+- Laminazione sopracciglia — 40.00 EUR
+
+### Manicure e Pedicure
+- Manicure classica — 8.00 EUR
+- Manicure gel — 25.00 EUR
+- Manicure ricostruzione — 35.00 EUR
+- Manicure semipermanente — 15.00 EUR
+- Nail art — 3.00 EUR
+- Pedicure semipermanente — 45.00 EUR
+- Pedicure spa classica — 30.00 EUR
+- Rimozione gel — 15.00 EUR
+- Rimozione semipermanente — 10.00 EUR
+- Rimozione semipermanente (non mio) — 8.00 EUR
+- Semipermanente piedi — 15.00 EUR
+
+### Laser
+- Laser Addome Donna — 25.00 EUR
+- Laser ascelle donna — 25.00 EUR
+- Laser ascelle uomo — 30.00 EUR
+- Laser baffetto donna — 15.00 EUR
+- Laser barba uomo — 40.00 EUR
+- Laser basette donna — 20.00 EUR
+- Laser braccia donna — 35.00 EUR
+- Laser braccia uomo — 40.00 EUR
+- Laser collo uomo — 25.00 EUR
+- Laser gamba completa donna — 60.00 EUR
+- Laser gamba completa uomo — 70.00 EUR
+- Laser glutei — 30.00 EUR
+- Laser inguine donna — 35.00 EUR
+- Laser lombare donna — 25.00 EUR
+- Laser mento donna — 15.00 EUR
+- Laser mezza gamba completa — 40.00 EUR
+- Laser mezza gamba uomo — 50.00 EUR
+- Laser nuca uomo — 20.00 EUR
+- Laser schiena Donna — 35.00 EUR
+- Laser schiena uomo — 40.00 EUR
+- Laser torace uomo — 40.00 EUR
+- Laser viso completo donna — 40.00 EUR
+
+## Prodotti
+
+### Pelle Grassa
+- Essential — 36.00 EUR
+- Essential — 28.40 EUR
+- Essential — 35.00 EUR
+- Oxygen shield — 56.00 EUR
+- Smooth — 26.00 EUR
+- Smooth — 40.00 EUR
+- Smooth — 28.00 EUR
+- Smooth — 31.00 EUR
+- Time solution — 27.50 EUR
+- Time solution — 40.00 EUR
+- Vitamina C — 58.00 EUR
+- Vitamina C — 40.00 EUR
+- Vitamina C — 42.00 EUR
+- Vitamina C — 27.50 EUR
+
+### Pelle Sensibile
+- Essential — 36.00 EUR
+- Essential — 28.40 EUR
+- Essential — 35.00 EUR
+- Oxygen shield — 27.50 EUR
+- Sensitive — 9.00 EUR
+- Sensitive — 58.00 EUR
+- Sensitive — 42.00 EUR
+- Sensitive — 30.00 EUR
+- Sensitive — 58.00 EUR
+- Time solution — 38.00 EUR
+- Time solution — 44.00 EUR
+- Vitamina C Crema Glow-Effect — 58.00 EUR
+
+### Pelle Spenta
+- Essential — 36.00 EUR
+- Essential — 28.40 EUR
+- Essential — 35.00 EUR
+- Oxygen shield — 0.00 EUR
+- Oxygen shield — 56.00 EUR
+- Oxygen shield — 9.00 EUR
+- Oxygen shield — 42.00 EUR
+- Time solution — 40.00 EUR
+- Time solution — 56.00 EUR
+- Time solution — 44.00 EUR
+- Time solution — 27.50 EUR
+- Vitamina C — 58.00 EUR
+- Vitamina C — 40.00 EUR
+- Vitamina C — 42.00 EUR
+- Vitamina C — 27.50 EUR
+- Vitamina C Crema Glow-Effect — 58.00 EUR
+
+### Corpo
+- Dionis RcO — 75.00 EUR
+- Hydrawave — 39.80 EUR
+- Hydrawave — 49.00 EUR
+- Lipotech — 56.00 EUR
+- Novacell — 36.00 EUR
+- Tone Up — 56.00 EUR
+
+### Pelle Matura
+- Dionis RcO — 55.00 EUR
+- Dionis RcO — 60.00 EUR
+- Dionis RcO — 79.00 EUR
+- Dionis RcO — 9.50 EUR
+- Dionis RcO — 79.00 EUR
+- Essential — 36.00 EUR
+- Essential — 28.40 EUR
+- Insta lift — 9.00 EUR
+- Insta lift — 27.50 EUR
+- InstaLift — 38.00 EUR
+- InstaLift — 42.00 EUR
+- InstaLift — 62.00 EUR
+- InstaLift — 56.00 EUR
+- Time solution — 27.50 EUR
+- Vitamina C — 40.00 EUR
+- Vitamina C — 42.00 EUR
+- Vitamina C — 27.50 EUR
+- Vitamina C Crema Glow-Effect — 58.00 EUR
+
+### Pelle Secca
+- Essential — 36.00 EUR
+- Essential — 28.40 EUR
+- Hydrawave — 27.50 EUR
+- Hydrawave siero viso Pro-Age — 38.00 EUR
+- Time solution — 27.50 EUR
+- Time solution — 44.00 EUR
+- Time solution Crema viso filler rimpolpante — 56.00 EUR
+- Vitamina C Crema Glow-Effect — 58.00 EUR
+
+### Pelle Acneica
+- Essential — 36.00 EUR
+- Essential — 28.40 EUR
+- Essential — 35.00 EUR
+- Oxygen shield — 56.00 EUR
+- Oxygen shield — 42.00 EUR
+- Smooth — 26.00 EUR
+- Smooth — 10.00 EUR
+- Smooth — 40.00 EUR
+- Smooth — 28.00 EUR
+- Smooth — 31.00 EUR
+- Vitamina C — 58.00 EUR
+- Vitamina C — 27.50 EUR
+
+## Link utili
+- [Sito](https://cncbeauty.it)
+- [Sitemap](https://cncbeauty.it/sitemap.xml)

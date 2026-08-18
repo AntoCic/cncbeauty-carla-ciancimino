@@ -62,7 +62,7 @@ export interface AppConfigData {
 }
 
 export const APP_CONFIG_DEFAULTS: Omit<AppConfigData, 'id'> = {
-  brandName: 'Cnc Beauty',
+  brandName: 'CNC Beauty',
   legalLastUpdated: '14 marzo 2026',
   cookieConsentKeyDate: '2026-02-27',
   ownerName: 'Carla Ciancimino',
