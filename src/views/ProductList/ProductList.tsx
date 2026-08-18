@@ -8,6 +8,7 @@ import type { ProductCategoryData } from '../../models/ProductCategory';
 import FloatingNav from '../../components/FloatingNav/FloatingNav';
 import SiteFooter from '../../components/SiteFooter/SiteFooter';
 import WaFab from '../../components/WaFab/WaFab';
+import PromoStrip from '../../components/PromoStrip/PromoStrip';
 import { useAppSelector } from '../../store';
 import styles from './ProductList.module.css';
 
@@ -78,6 +79,8 @@ const ProductList = () => {
           </div>
         </div>
       </div>
+
+      <PromoStrip type="products" />
 
       <div className={styles.pageBody}>
         <div ref={ref}>

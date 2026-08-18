@@ -7,6 +7,7 @@ import type { TreatmentData } from '../../models/Treatment';
 import FloatingNav from '../../components/FloatingNav/FloatingNav';
 import SiteFooter from '../../components/SiteFooter/SiteFooter';
 import WaFab from '../../components/WaFab/WaFab';
+import PromoStrip from '../../components/PromoStrip/PromoStrip';
 import styles from './TreatmentList.module.css';
 
 const WA_URL = 'https://wa.me/393297094859?text=Ciao%21%20Vorrei%20prenotare%20una%20consulenza';
@@ -97,6 +98,8 @@ const TreatmentList = () => {
           </div>
         </div>
       </div>
+
+      <PromoStrip type="treatments" />
 
       {/* Body */}
       <div className={styles.pageBody}>
