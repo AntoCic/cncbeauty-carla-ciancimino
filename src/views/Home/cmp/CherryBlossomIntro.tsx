@@ -131,7 +131,7 @@ const CherryBlossomIntro = ({ onDone }: Props) => {
       <div className={styles.plantContainer}>
         <img
           ref={plantRef}
-          src="/img/intro/into_pianta.svg"
+          src="/img/intro/into_pianta.webp"
           alt=""
           aria-hidden="true"
           className={styles.plant}
