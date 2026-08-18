@@ -1,0 +1,26 @@
+.fab {
+  position: fixed;
+  bottom: calc(26px + env(safe-area-inset-bottom, 0px));
+  left: calc(26px + env(safe-area-inset-left, 0px));
+  z-index: 800;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: var(--plum, #7a3b57);
+  color: #fff;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 28px rgba(122, 59, 87, 0.38);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.fab:hover {
+  transform: scale(1.1);
+}
+
+.fab .material-symbols-outlined {
+  font-size: 26px;
+}
