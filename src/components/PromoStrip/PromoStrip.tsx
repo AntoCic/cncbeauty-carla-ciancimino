@@ -30,6 +30,7 @@ export const PromoStrip = ({ type, categoryId }: PromoStripProps) => {
             transition={{ duration: 0.45, delay: i * 0.07, ease: [0.16, 1, 0.3, 1] }}
             whileHover={{ y: -4 }}
           >
+            <span className={styles.cardShine} aria-hidden="true" />
             <span className={styles.cardBody}>
               <span className={styles.cardBadge}>
                 <span className="material-symbols-outlined" aria-hidden>local_offer</span>
