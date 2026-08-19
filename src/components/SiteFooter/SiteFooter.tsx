@@ -24,6 +24,7 @@ const SiteFooter = () => {
         <div className={styles.col}>
           <h4>Info</h4>
           <ul>
+            <li><a href="/listino-prezzi/">Listino prezzi</a></li>
             <li><a href="/#faq">FAQ</a></li>
             <li><a href="/#contacts">Contatti</a></li>
             <li><a href="/#contacts">Prenota</a></li>

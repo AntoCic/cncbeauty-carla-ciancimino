@@ -199,5 +199,6 @@ Sito: https://cncbeauty.it
 - Vitamina C — 27.50 EUR
 
 ## Link utili
+- [Listino prezzi](https://cncbeauty.it/listino-prezzi/)
 - [Sito](https://cncbeauty.it)
 - [Sitemap](https://cncbeauty.it/sitemap.xml)
