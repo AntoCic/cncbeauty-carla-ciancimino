@@ -92,10 +92,18 @@ function emitListinoPage(): Plugin {
       h2 { margin-top: 2rem; }
       h3 { margin-top: 1.5rem; }
       ul { padding-left: 1.25rem; }
+      .site-cta { margin: 1rem 0 1.5rem; padding: 1.1rem 1.25rem; background: #fdf1f6; border: 1px solid #f3d3e2; border-radius: 12px; }
+      .site-cta p { margin: 0 0 0.9rem; font-size: 0.95rem; color: #6b5560; }
+      .site-cta a { display: block; width: 100%; box-sizing: border-box; text-align: center; padding: 1rem; background: #d6336c; color: #fff; text-decoration: none; border-radius: 10px; font-weight: 700; font-size: 1.15rem; }
+      .site-cta a:hover { background: #b8265a; }
     </style>
   </head>
   <body>
     <h1>Listino prezzi CNC Beauty Sciacca</h1>
+    <div class="site-cta">
+      <p>Questa pagina è pensata per motori di ricerca e assistenti AI. Per vedere il sito CNC Beauty, clicca qui →</p>
+      <a href="/">Vai al sito</a>
+    </div>
     <p>Prezzi aggiornati al ${today}. Listino completo dei trattamenti e dei prodotti di CNC Beauty, centro estetico a Sciacca (AG).</p>
 ${renderListinoBody(llmsTxt)}
     <p><a href="/">Torna al sito CNC Beauty</a></p>
