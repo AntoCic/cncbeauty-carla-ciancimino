@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# Firebase CLI local deploy cache (machine-local, regenerated on each `firebase deploy`)
+.firebase/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
